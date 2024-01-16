@@ -4,3 +4,5 @@
 #25E01F  fosforlu yeşil
 #135A11  dark green
 #323232  elexia gray
+
+tablonun yazıları büyük özet tablosunun küçülmesi lazım

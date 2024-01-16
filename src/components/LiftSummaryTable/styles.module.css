@@ -27,6 +27,10 @@
     background-color: rgb(216, 224, 215);
 }
 
+.summaryTable span{
+    font-weight: bold;
+    color: black;
+}
 
 @media screen and (max-width: 750px) {
     .summaryTable {

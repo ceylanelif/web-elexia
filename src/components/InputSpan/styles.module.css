@@ -20,7 +20,7 @@
 
 
 .labelWrapper label {
-  margin-right: 10px;
+  margin-inline: 10px;
   padding: 6px;
 }
 
@@ -39,6 +39,6 @@
   border: 2px solid gray;
   border-left: none;
   border-radius: 0 7px 7px 0;
-  padding: 8px;
+  padding: 4px 6px 5px 4px;
   background-color: gainsboro;
 } 

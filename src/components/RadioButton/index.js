@@ -8,7 +8,7 @@ export default function ElexiaRadioButton({ buttonName, value, handleChange, che
       <label>
         <input
           type="radio"
-          name='radioGroup'
+          name={buttonName}
           value={value}
           checked={checked}
           onChange={handleChange}

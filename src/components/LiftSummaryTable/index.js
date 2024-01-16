@@ -61,14 +61,14 @@ export default function LiftSummaryTable() {
           {selectedOptions.CabinDoor.cabinDoor &&
             <tr>
               <td>Cabin Door</td>
-              <td>{selectedOptions.CabinDoor.cabinDoor.door.doorVariation.material.materialName}
+              <td><span>{selectedOptions.CabinDoor.amount} PCS</span> {selectedOptions.CabinDoor.cabinDoor.door.doorVariation.material.materialName}
               </td>
             </tr>
           }
           {selectedOptions.LandingDoor.landingDoor &&
             <tr>
               <td>Landing Doors</td>
-              <td>{selectedOptions.LandingDoor.landingDoor.door.doorVariation.material.materialName}
+              <td><span>{selectedOptions.LandingDoor.amount} PCS</span> {selectedOptions.LandingDoor.landingDoor.door.doorVariation.material.materialName}
               </td>
             </tr>
           }

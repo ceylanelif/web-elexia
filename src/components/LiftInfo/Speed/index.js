@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from "./styles.module.css";
 import { useDispatch, useSelector } from 'react-redux';
 import { setSpeed } from '@/lib/features/packageAppFeatures/liftInfoSlice';

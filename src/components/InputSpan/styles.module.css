@@ -1,0 +1,44 @@
+.elexiaLabeledInputWrapper {
+  display: flex;
+  padding: 4px;
+  align-items: center;
+  gap: 10px;
+}
+
+.labelWrapper {
+  width: 30%;
+  text-align: center;
+}
+
+.inputAndSpanWrapper {
+  display: flex;
+  flex-direction: row;
+  width: 70%;
+  align-items: baseline;
+}
+
+
+
+.labelWrapper label {
+  margin-right: 10px;
+  padding: 6px;
+}
+
+.inputAndSpanWrapper input {
+  border: 2px solid gray;
+  border-radius: 7px 0 0 7px;
+  padding: 6px;
+  text-align: center;
+  justify-content: center;
+  width: auto;
+}
+
+
+.inputAndSpanWrapper span {
+  display: inline-block;
+  border: 2px solid gray;
+  border-left: none;
+  border-radius: 0 7px 7px 0;
+  padding: 8px;
+  background-color: gainsboro;
+} 

@@ -1,0 +1,35 @@
+.header {
+    /* background: linear-gradient(180deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0)); */
+    background-color: #fff;
+}
+
+.headerWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo{
+display: flex;
+align-items: center;
+gap: 8px;
+font-size: 24px;
+font-weight: 700;
+letter-spacing: -1px;
+color: #fafafa;
+}
+
+.navigationMenu{
+display: flex;
+gap: 48px;
+color: #25E01F;
+font-weight: 700;
+letter-spacing: 2px;
+}
+.navigationMenu:hover{
+display: flex;
+gap: 48px;
+color: #009444;
+font-weight: 700;
+letter-spacing: 2px;
+}

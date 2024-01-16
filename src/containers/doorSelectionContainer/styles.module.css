@@ -1,0 +1,45 @@
+.mainWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+}
+
+.backButton button {
+  background-color: red;
+}
+
+.backButton button:hover {
+  background-color: red;
+  color: black;
+}
+
+.tableWrapper {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+  flex-direction: row;
+}
+
+.buttonWrapper {
+  display: flex;
+  flex-direction: row-reverse;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+}
+
+.rightContentWrapper {
+  display: flex;
+  flex-direction: column;
+  width: -webkit-fill-available;
+  gap: 20px;
+}
+
+/* Ekran genişliği 750px altında olduğunda */
+@media screen and (max-width: 750px) {
+  .tableWrapper {
+    flex-direction: column;
+  }
+}

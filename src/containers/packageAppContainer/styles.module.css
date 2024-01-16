@@ -1,0 +1,27 @@
+.packageAppContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+}
+
+.tableWrapper {
+  display: flex;
+  width: 100%;
+  gap: 5px;
+  flex-direction: row;
+}
+
+.buttonWrapper {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Ekran genişliği 750px altında olduğunda */
+@media screen and (max-width: 750px) {
+.tableWrapper{
+flex-direction: column-reverse;
+}
+}

@@ -1,0 +1,36 @@
+.summaryTable {
+    border: gainsboro 1px solid ;
+    border-radius: 10px; /* Tablo kenarlarını yuvarlamak için */
+    width: 50%;
+    
+}
+
+.summaryTable table {
+    color: green;
+    border-collapse: collapse;
+    width: 100%;
+ 
+}
+
+.summaryTable tr {
+    text-align: center;
+   
+}
+
+.summaryTable td:first-child {
+    text-align: left;
+    padding: 2px 4px 4px 5px;
+
+}
+
+.summaryTable thead {
+    background-color: rgb(216, 224, 215);
+}
+
+
+@media screen and (max-width: 750px) {
+    .summaryTable {
+        width: 100%;
+        
+    }
+    }

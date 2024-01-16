@@ -1,0 +1,29 @@
+.elexiaInputWrapper {
+  display: flex;
+  padding: 4px;
+  align-items: center;
+  gap: 10px;
+}
+
+.labelWrapper {
+  width: 30%;
+  text-align: center;
+}
+
+.labelWrapper label {
+  margin-right: 10px;
+  padding: 6px;
+}
+
+.inputWrapper {
+  width: 70%;
+  align-items: baseline;
+}
+
+.inputWrapper input {
+  border: 2px solid gray;
+  border-radius: 7px ;
+  padding: 6px;
+  text-align: center;
+  justify-content: center
+}

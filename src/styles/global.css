@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: "Inter", sans-serif;
+  font-size: 16px;
+  background-color: #fff;
+}
+
+div[data-nextjs-scroll-focus-boundary] {
+  height: 100%;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr min(1440px, 94%) 1fr;
+  grid-template-rows: 96px auto 72px;
+}
+
+.container > * {
+  grid-column: 2;
+}
+
+.container > .fluid {
+  grid-column: 1 / -1;
+}
+
+a{
+color:#25E01F
+}
+
+a:hover{
+color:#135A11;
+}
+
+.regularInput {
+  display: flex;
+  align-items: center;
+  padding: 4px;
+}
+.regularInput input{
+  border: 2px solid gray;
+  border-radius: 7px ;
+  padding: 4px;
+  text-align: center;
+}
+/* style.module.css */
+
+.regularInput {
+  display: flex;
+  align-items: center;
+  padding: 4px;
+}
+
+.spanInput {
+  display: flex;
+  align-items: center;
+  padding: 4px;
+}
+
+.regularInput label {
+  margin-right: 10px;
+}
+
+.spanInput label {
+  margin-right: 10px;
+}
+
+.spanInput input {
+  border: 2px solid gray;
+  border-radius: 7px 0 0 7px;
+  padding: 5px;
+  text-align: center;
+}
+
+.spanInput span {
+  border: 1px solid gray;
+  border-left: none;
+  border-radius: 0 7px 7px 0;
+  padding: 5px;
+  background-color: gainsboro;
+}

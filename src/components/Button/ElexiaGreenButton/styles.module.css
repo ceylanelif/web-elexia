@@ -1,0 +1,46 @@
+.elexiaGreenButton {
+  display: flex;
+  width: 72px;
+  padding: 8px 10px;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  border-radius: 24px;
+  background: #25E01F;
+  color: #FFF;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+.elexiaGreenButton:hover{
+  display: inline-flex;
+padding: 8px 10px;
+justify-content: center;
+align-items: center;
+gap: 12px;
+border-radius: 24px;
+background: #25E01F;
+color: var(--elexiaDarkGreen, #135A11);
+font-size: 16px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+}
+
+.elexiaGreenButton:active {
+
+  display: inline-flex;
+padding: 8px 10px;
+justify-content: center;
+align-items: center;
+gap: 12px;
+border-radius: 24px;
+background: var(--elexia-black, #323232);
+color: var(--elexiaDarkGreen, #135A11);
+font-size: 16px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+}

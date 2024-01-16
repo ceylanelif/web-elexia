@@ -1,0 +1,8 @@
+{
+    "github.copilot.editor.enableCodeActions": true,
+    "editor.defaultFoldingRangeProvider": "GitHub.copilot",
+    "editor.defaultFormatter": "GitHub.copilot",
+    "[javascript]": {
+        "editor.defaultFormatter": "vscode.typescript-language-features"
+    }
+}

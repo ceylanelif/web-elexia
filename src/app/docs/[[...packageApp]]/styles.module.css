@@ -1,0 +1,26 @@
+
+.loading {
+  position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.loading div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  /* İçeriği yatayda merkezlemek için */
+}
+
+.nextButton {  
+  margin-top: 20px; 
+}
+
+.packageApp {
+  display: flex;
+  flex-direction: column; /* Öğeleri sıralamak için dikey yönde esnek bir düzen oluştur */
+  width: 100%;
+}

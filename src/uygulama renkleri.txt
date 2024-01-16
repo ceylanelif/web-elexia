@@ -1,0 +1,6 @@
+#FFB429  logodaki koyu sarı
+#FFF204  logodaki açık sarı
+#009444  logodaki yeşil
+#25E01F  fosforlu yeşil
+#135A11  dark green
+#323232  elexia gray

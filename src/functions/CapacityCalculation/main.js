@@ -1,7 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import CapacityList from './CapacityList';
-import doorSpaceReducer from './door';
 import { carcassLengthCalculator } from './Carcass/LengthCalculator';
 
 export default function CapacityCalculator() {

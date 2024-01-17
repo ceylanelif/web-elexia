@@ -2,6 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import CapacityList from './CapacityList';
 import doorSpaceReducer from './door';
+import { carcassLengthCalculator } from './Carcass/LengthCalculator';
 
 export default function CapacityCalculator() {
 const liftInfo = useSelector((state) => state.lift);
@@ -11,11 +12,10 @@ const constants=useSelector((state)=>state.extraGlobal.constantData);
 
 //-----------------Kapı Seçimi-----------------//
 let contentToDisplay; // İçeriği göstermek için değişken
-
 if (selectedOptions.DoorDimension) {
   contentToDisplay = CapacityList(ctws, liftInfo, constants, selectedOptions)
-  const doorReducer=doorSpaceReducer(liftInfo, selectedOptions, constants);
-  console.log(doorReducer);
+  const checker=carcassLengthCalculator(liftInfo,constants);
+  console.log(checker);
 } else {
   contentToDisplay = <div>Lütfen Kapı Seçimi yapınız!</div>;
 }  

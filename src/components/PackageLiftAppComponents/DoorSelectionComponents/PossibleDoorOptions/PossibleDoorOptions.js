@@ -1,4 +1,4 @@
-import { setDoor, setDoorDimension } from '@/lib/features/packageAppFeatures/selectedOptionsSlice';
+import { setDoorDimension } from '@/lib/features/packageAppFeatures/selectedOptionsSlice';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Dropdown } from 'semantic-ui-react';

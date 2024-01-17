@@ -30,7 +30,7 @@ export const ctwSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchCtw.fulfilled, (state, action) => {
-        state.loading = false;
+        state.loading = 'succeeded';
         state.ctwList = action.payload;
       })
       .addCase(fetchCtw.rejected, (state, action) => {

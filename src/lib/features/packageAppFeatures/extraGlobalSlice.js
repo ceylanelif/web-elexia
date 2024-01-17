@@ -1,11 +1,12 @@
+import { ShaftConstantDatas } from '@/functions/CapacityCalculation/constData';
 import { createSlice } from '@reduxjs/toolkit';
 
+const constantData= ShaftConstantDatas;
 const extraGlobalSlice = createSlice({
     name: 'extraGlobal',
     initialState: {
     otherGlobalLandingDoor: false,
-
-
+    constantData: constantData,
     },
     reducers: {
         setGlobalOtherLandingDoor: (state, action) => {

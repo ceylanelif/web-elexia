@@ -1,4 +1,9 @@
 export const ShaftConstantDatas = {
+    door:{door_A_WS: 50,
+      door_B_WS: 50,
+      door_CtwWs: 50,
+      door_cabinWS: 50,},
+
     railWallConsoleMin: 50,
     railWallConsoleMax: 180,
     mainRailSizeMin: 65,//70 A ray 
@@ -34,3 +39,10 @@ export const ShaftConstantDatas = {
     carcassMotorHeight:300,// Motor Yüksekliği
     carcasssMotorToCeilingWS:300,// Motorun üstünden bina tavanına olan çalışma boşluğu
   };
+//A= Kuyunun giriş kapısının  olduğu duvar -Genişlik
+//B= Kuyunun giriş kapısının tam karşısındaki duvar-Genişlik
+//C= Kuyunun girişinin SOL tarafındaki duvar-Derinlik
+//D= Kuyunun girişinin SAĞ tarafındaki duvar-Derinlik
+  export const DoorConstDatas = {
+    
+  }

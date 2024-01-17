@@ -3,6 +3,7 @@ import React, { useEffect } from 'react'
 import DoorSelectionContainer from '@/containers/doorSelectionContainer'
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchDimensions } from '@/lib/features/packageAppFeatures/doorSlice';
+import { fetchCtw } from '@/lib/features/packageAppFeatures/ctwSlice';
 
 export default function DoorSelectionPage() {
   
@@ -14,7 +15,7 @@ export default function DoorSelectionPage() {
   const shaftWidthWithWorkingSpace = shaftWidthAsNumber - workingSpace; // Database den talep edilen ölçü
   useEffect(() => {
     dispatch(fetchDimensions(shaftWidthWithWorkingSpace));
-    
+    dispatch(fetchCtw());
   }, [dispatch, shaftWidthWithWorkingSpace]);
   
   return (

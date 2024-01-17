@@ -39,8 +39,8 @@ const backPage=() => window.location.href = "/docs/packageApp";
         <CabinDoorModal/>
         <LandingDoorModal/>
         {otherLandingDoor && <OtherLandingDoorModal  />}   
-        </div>
         <CapacityCalculator/>
+        </div>
         </div>
         <div className={styles.buttonWrapper}>
             <ElexiaGreenButton onClick={nextPage} className={styles.nextButton} buttonName={"Next"}/>

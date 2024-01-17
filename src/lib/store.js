@@ -5,6 +5,7 @@ import doorSlice from './features/packageAppFeatures/doorSlice';
 import selectedOptionsSlice from './features/packageAppFeatures/selectedOptionsSlice';
 import productSlice from './features/packageAppFeatures/productSlice';
 import extraGlobalSlice from './features/packageAppFeatures/extraGlobalSlice';
+import ctwSlice from './features/packageAppFeatures/ctwSlice';
 
 export const store = configureStore({
     reducer: {
@@ -13,6 +14,7 @@ export const store = configureStore({
         selectedOptions:selectedOptionsSlice,
         product:productSlice,
         extraGlobal:extraGlobalSlice,
+        ctw:ctwSlice,
 
     }
 })

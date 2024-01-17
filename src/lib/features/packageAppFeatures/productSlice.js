@@ -43,7 +43,7 @@ export const productSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchProducts.fulfilled, (state, action) => {
-        state.loading = false;
+        state.loading = 'succeeded';
         state.products = action.payload;
       })
       .addCase(fetchProducts.rejected, (state, action) => {
@@ -55,7 +55,7 @@ export const productSlice = createSlice({
         state.error = null;
       })
       .addCase(searchProducts.fulfilled, (state, action) => {
-        state.loading = false;
+        state.loading = 'succeeded';
         state.products = action.payload;
       })
       .addCase(searchProducts.rejected, (state, action) => {

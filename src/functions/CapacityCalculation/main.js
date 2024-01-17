@@ -1,21 +1,27 @@
-
 import React from 'react'
 import { useSelector } from 'react-redux'
+import CapacityList from './CapacityList';
 import doorSpaceReducer from './door';
 
 export default function CapacityCalculator() {
 const liftInfo = useSelector((state) => state.lift);
-const product=useSelector((state)=>state.product);
-const door=useSelector((state)=>state.door);
+const ctws=useSelector((state)=>state.ctw);
 const selectedOptions=useSelector((state)=>state.selectedOptions);
-if(selectedOptions.DoorDimension){
-const doorSpace=doorSpaceReducer(liftInfo,selectedOptions);
-console.log(doorSpace);}
-  return (
+const constants=useSelector((state)=>state.extraGlobal.constantData);
+
+//-----------------Kapı Seçimi-----------------//
+let contentToDisplay; // İçeriği göstermek için değişken
+
+if (selectedOptions.DoorDimension) {
+  contentToDisplay = CapacityList(ctws, liftInfo, constants, selectedOptions)
+  const doorReducer=doorSpaceReducer(liftInfo, selectedOptions, constants);
+  console.log(doorReducer);
+} else {
+  contentToDisplay = <div>Lütfen Kapı Seçimi yapınız!</div>;
+}  
+return (
     <div>
-
-
-    </div>
-  )
+        {contentToDisplay}
+    </div>  )
 }
 

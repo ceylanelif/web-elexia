@@ -27,6 +27,13 @@ export const ShaftConstantDatas = {
     carcassMotorWs: 300,// Ağırlık şasesi ve Motor Sehpası boşluğu Ray tipi sehpada
   },
 
+  carcassDepth: {
+  ctw_D_WS: 50,//Ağırlık Şasesi ve duvar arasında kalan boşluk,
+  ctwPudrelWs: 50,//Ağırlık Şasesi ve pudrel arasında kalan boşluk,
+  pudrelWidth: 55,//Pudrel genişliği,
+  pudrelDoorWs: 50,//Pudrel ve kapı arasında kalan boşluk,
+  },
+
 
   
   railWallConsoleMin: 50,

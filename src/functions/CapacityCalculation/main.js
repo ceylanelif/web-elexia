@@ -1,7 +1,8 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import CapacityList from './CapacityList';
-import { DepthCalculator } from './Carcass/DepthCalculator';
+import { ctwDepthCalculator } from './Carcass/DepthCalculator';
+import { carcassLengthCalculator } from './Carcass/LengthCalculator';
 
 export default function CapacityCalculator() {
 const liftInfo = useSelector((state) => state.lift);
@@ -15,8 +16,9 @@ if (selectedOptions.DoorDimension) {
   contentToDisplay = CapacityList(ctws, liftInfo, constants, selectedOptions)
   
   const checker = ctws.map((ctw) => {
-    const result = DepthCalculator(ctw, liftInfo, selectedOptions, constants);
-    return { ...result, ctwName: ctw.ctwName };
+    const result = ctwDepthCalculator(ctw, liftInfo, selectedOptions, constants);
+    const lengths=carcassLengthCalculator(liftInfo,constants);
+    return { depths:result, ctwName: ctw, lengths:lengths};
 });
 
   console.log(checker);

@@ -4,7 +4,7 @@ export function carcassLengthCalculator(liftInfo, constants) {
     const pit = parseInt(liftInfo.pit, 10);
     const constantData = constants.carcassLength;
 
-    const MrCarcass = ((overhead + pit)
+    const MrCarcassLength = ((overhead + pit)
         - constantData.bufferHeightMin
         - constantData.bufferWS
         - constantData.downside
@@ -14,7 +14,7 @@ export function carcassLengthCalculator(liftInfo, constants) {
         - constantData.pulleyProtection
         - constantData.ceilingWs);
 
-    const MrlBeam = ((overhead + pit)
+    const MrlBeamLength = ((overhead + pit)
         - constantData.bufferHeightMin
         - constantData.bufferWS
         - constantData.downside
@@ -28,7 +28,7 @@ export function carcassLengthCalculator(liftInfo, constants) {
         - constantData.motorHeight
         - constantData.motorToCeilingWS);
 
-    const MrlRailBase = ((overhead + pit)
+    const MrlRailBaseLength = ((overhead + pit)
         - constantData.bufferHeightMin
         - constantData.bufferWS
         - constantData.downside
@@ -41,6 +41,6 @@ export function carcassLengthCalculator(liftInfo, constants) {
         - constantData.motorToCeilingWS
     );
 
-    return { MrCarcass, MrlBeam, MrlRailBase };
+    return { MrCarcassLength, MrlBeamLength, MrlRailBaseLength };
 }
 

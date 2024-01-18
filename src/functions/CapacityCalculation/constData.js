@@ -32,6 +32,10 @@ export const ShaftConstantDatas = {
   ctwPudrelWs: 50,//Ağırlık Şasesi ve pudrel arasında kalan boşluk,
   pudrelWidth: 55,//Pudrel genişliği,
   pudrelDoorWs: 50,//Pudrel ve kapı arasında kalan boşluk,
+  ctw_B_WS: 50,//Ağırlık Şasesi ve duvar arasında kalan boşluk,
+  seperatorCtwWs: 50,//Ağırlık Şasesi ve Separatör sacı arasında kalan boşluk,
+  seperatorWidth: 20,//Separatör sacı genişliği,
+  seperatorCabinWs: 50,//Separatör sacı ve kabin arasında kalan boşluk,
   },
 
 

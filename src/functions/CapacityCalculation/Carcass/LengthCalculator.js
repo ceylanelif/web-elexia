@@ -1,5 +1,5 @@
 //Karkasın karşıdan görünümde yüksekliği.
-export function carcassLengthCalculator(liftInfo, constants) {
+export function carcassLengthCalculator(liftInfo, constants,ctw) {
     const overhead = parseInt(liftInfo.overhead, 10);
     const pit = parseInt(liftInfo.pit, 10);
     const constantData = constants.carcassLength;
@@ -41,6 +41,29 @@ export function carcassLengthCalculator(liftInfo, constants) {
         - constantData.motorToCeilingWS
     );
 
-    return { MrCarcassLength, MrlBeamLength, MrlRailBaseLength };
+    const MrCarcass = {
+        length: MrCarcassLength,
+        piece: Math.floor(MrCarcassLength / ctw.ctwC),
+        singleKg: Math.floor((MrCarcassLength / ctw.ctwC) * ctw.ctwKg),
+        doubleKg: Math.floor((MrCarcassLength / ctw.ctwC) * ctw.two_X_kg)
+    };
+
+    const MrlBeam = {
+        length: MrlBeamLength,
+        piece: Math.floor(MrlBeamLength / ctw.ctwC),
+        singleKg: Math.floor((MrlBeamLength / ctw.ctwC) * ctw.ctwKg),
+        doubleKg: Math.floor((MrlBeamLength / ctw.ctwC) * ctw.two_X_kg)
+    };
+
+    const MrlRailBase = {
+        length: MrlRailBaseLength,
+        piece: Math.floor(MrlRailBaseLength / ctw.ctwC),
+        singleKg: Math.floor((MrlRailBaseLength / ctw.ctwC) * ctw.ctwKg),
+        doubleKg: Math.floor((MrlRailBaseLength / ctw.ctwC) * ctw.two_X_kg)
+    };
+
+
+
+    return {MrCarcass, MrlBeam, MrlRailBase };
 }
 

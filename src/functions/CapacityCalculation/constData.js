@@ -46,6 +46,16 @@ export const ShaftConstantDatas = {
   doorPudrelWs: 70,//Kapı ve Pudrel arasında kalan boşluk,
   },
   
+  cabinWidth: {
+    railWallConsoleMin: 70,
+    railWallConsoleMax: 310,
+    railCabinWS: 75,//Anaray ile kabin arasındaki boşluk
+    mainRailSizeMax: 75,//90 B ray 
+
+//** */
+    pudrelConsole: 20,//Pudrel konsolu,
+  },
+
   railWallConsoleMin: 50,
   railWallConsoleMax: 180,
   mainRailSizeMin: 65,//70 A ray 

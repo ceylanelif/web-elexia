@@ -40,7 +40,7 @@ export function carcassLengthCalculator(liftInfo, constants,ctw) {
         - constantData.motorHeight
         - constantData.motorToCeilingWS
     );
-
+    
     const MrCarcass = {
         length: MrCarcassLength,
         piece: Math.floor(MrCarcassLength / ctw.ctwC),

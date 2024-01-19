@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import CapacityList from './CapacityList';
 import CapacityCalculator from './CapacityCalculator';
 import { ctwSide } from './BackCtw/CtwSide';
+import { backCtwCabinSize } from '../SecoundWay/BackCtwCabinSize';
 
 export default function Capacity() {
 const liftInfo = useSelector((state) => state.lift);
@@ -15,8 +16,7 @@ let contentToDisplay; // İçeriği göstermek için değişken
 if (selectedOptions.DoorDimension) {
   contentToDisplay = CapacityList(ctws, liftInfo, constants, selectedOptions)
   const checker=CapacityCalculator(ctws, liftInfo, constants, selectedOptions);
-  const checker2=ctwSide(ctws, liftInfo, constants, selectedOptions);
-  console.log("arkadan ağırlık karkas ölçüleri",checker2);
+  const backCtw=backCtwCabinSize (liftInfo, selectedOptions, constants);
   console.log(checker);
 } else {
   contentToDisplay = <div>Lütfen Kapı Seçimi yapınız!</div>;

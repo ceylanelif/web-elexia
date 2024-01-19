@@ -1,10 +1,9 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import CapacityList from './CapacityList';
-import { ctwDepthCalculator } from './Carcass/DepthCalculator';
-import { carcassLengthCalculator } from './Carcass/LengthCalculator';
+import CapacityCalculator from './CapacityCalculator';
 
-export default function CapacityCalculator() {
+export default function Capacity() {
 const liftInfo = useSelector((state) => state.lift);
 const ctws=useSelector((state)=>state.ctw.ctwList);
 const selectedOptions=useSelector((state)=>state.selectedOptions);
@@ -14,12 +13,8 @@ const constants=useSelector((state)=>state.extraGlobal.constantData);
 let contentToDisplay; // İçeriği göstermek için değişken
 if (selectedOptions.DoorDimension) {
   contentToDisplay = CapacityList(ctws, liftInfo, constants, selectedOptions)
+  const checker=CapacityCalculator(ctws, liftInfo, constants, selectedOptions);
   
-  const checker = ctws.map((ctw) => {
-    const result = ctwDepthCalculator(ctw, liftInfo, selectedOptions, constants);
-    const lengths=carcassLengthCalculator(liftInfo,constants);
-    return { depths:result, ctwName: ctw, lengths:lengths};
-});
 
   console.log(checker);
 } else {

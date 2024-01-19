@@ -38,7 +38,13 @@ export const ShaftConstantDatas = {
   seperatorCabinWs: 50,//Separatör sacı ve kabin arasında kalan boşluk,
   },
 
-
+  carcassWidth:{
+  pudrelWallWS: 50,//Pudrel ve Giriş duvar arasında kalan boşluk,
+  pudrelWidth: 55,//Pudrel genişliği,
+  ctwRailSizeMax: 65,//Ağırlık Şasesi Rayı Max Boyu,
+  railCarcassWs: 50,//Ağırlık Şasesi Rayı ve Ağırlık Şasesi arasında kalan boşluk,
+  doorPudrelWs: 70,//Kapı ve Pudrel arasında kalan boşluk,
+  },
   
   railWallConsoleMin: 50,
   railWallConsoleMax: 180,

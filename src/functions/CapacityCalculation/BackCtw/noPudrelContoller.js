@@ -1,11 +1,9 @@
 import { carcassDepthCalculator } from "../Carcass/DepthCalculator";
-import { carcassLengthCalculator } from "../Carcass/LengthCalculator";
 import { carcassWidthCalculator } from "../Carcass/WidthCalculator";
 
-export function ctwSide(ctw, liftInfo, constants, selectedOptions) {
+export function noPudrelController(ctw, liftInfo, constants, selectedOptions) {
 
     const carcassDepths = carcassDepthCalculator(ctw, liftInfo, selectedOptions, constants);
-    const carcassLengths = carcassLengthCalculator(liftInfo, constants,ctw);
     const carcassWidths = carcassWidthCalculator(ctw, liftInfo, selectedOptions, constants);
 
     function oneRow() {

@@ -1,4 +1,4 @@
-export function carcassWidthCalculator(ctw, liftInfo, selectedOptions, constants) {
+export function carcassWidthCalculator(ctw, selectedOptions, constants) {
     const widthConstants = constants.carcassWidth; 
     const shaftLengthPudrel = 2 * (
         widthConstants.pudrelWallWS +
@@ -6,7 +6,7 @@ export function carcassWidthCalculator(ctw, liftInfo, selectedOptions, constants
         widthConstants.ctwRailSizeMax +
         widthConstants.railCarcassWs
     );
-    const doorLengthPudrel = shaftLengthPudrel - (selectedOptions.DoorDimension.depth + widthConstants.doorPudrelWs);
+    const doorLengthPudrel = shaftLengthPudrel + (selectedOptions.DoorDimension.depth + widthConstants.doorPudrelWs);
     const shaftLength = {double:shaftLengthPudrel +ctw.two_X_a, single:shaftLengthPudrel +ctw.ctwA};
     const doorLength = {double:doorLengthPudrel +ctw.two_X_a, single:doorLengthPudrel +ctw.ctwA};
 

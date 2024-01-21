@@ -1,5 +1,5 @@
 //Karkasın karşıdan görünümde yüksekliği.
-export function carcassLengthCalculator(liftInfo, constants,ctw) {
+export function carcassLengthCalculator(ctw,liftInfo, constants) {
     const overhead = parseInt(liftInfo.overhead, 10);
     const pit = parseInt(liftInfo.pit, 10);
     const constantData = constants.carcassLength;

@@ -1,4 +1,4 @@
-import { carcassLengthCalculator } from "../CapacityCalculation/Carcass/LengthCalculator";
+import { carcassLengthCalculator } from "../Carcass/LengthCalculator";
 
 export function ctwLocationDeterminer(liftInfo) {
     

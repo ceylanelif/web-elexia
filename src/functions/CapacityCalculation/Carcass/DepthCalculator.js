@@ -1,4 +1,4 @@
-import doorSpaceReducer from "../door";
+import doorSpaceReducer from "../CtwDesigner/door";
 
 export function carcassDepthCalculator(ctw, liftInfo, selectedOptions, constants) {
     const remainedFromDoors = doorSpaceReducer(liftInfo, selectedOptions, constants).emptyWidthRemains;//kuyu genişliğinden kapı genişliği düşüldüğünde kalan alan
@@ -19,7 +19,7 @@ export function carcassDepthCalculator(ctw, liftInfo, selectedOptions, constants
     const pudrelCtwDoubleRow = { doubleRow: doubleCtwDepthWithPudrel, shaftLenghtCtw: isDoorSideCTWfit().doubleRow }//Yandan Çift Sıra Ağırlık Kapı uzunluğu düşüldüğünde yer var mı?
 
     const noPudrelCtwDepth = { oneRow: noPudrelDimensions + ctw.ctwB, doubleRow: noPudrelDimensions + ctw.two_X_b }//Arkadan Ağırlık tek sıra ve çift sıra işgal alanları
-    const pudrelCtwDepth = { pudrelCtwOneRow, pudrelCtwDoubleRow }
+    const pudrelCtwDepth = { oneRow:oneCtwDepthWithPudrel, doubleRow: doubleCtwDepthWithPudrel }//Yandan Ağırlık tek sıra ve çift sıra işgal alanları
 
     function isDoorSideCTWfit() {
         if (remainedFromDoors - pudrelDimensions >= ctw.two_X_b) {

@@ -1,5 +1,5 @@
-import { cabinAreaToCapacityFinder } from "../CabinAreaToCapacityFinder";
-import { capacityToCtwWeightFinder } from "../CapacityToCtwWeightFinder";
+import { cabinAreaToCapacityFinder } from "../CtwDesigner/CabinAreaToCapacityFinder";
+import { capacityToCtwWeightFinder } from "../CtwDesigner/CapacityToCtwWeightFinder";
 import { BackCabinDepths } from "./CabinDepths";
 import { BackCabinWidths } from "./CabinWidths";
 

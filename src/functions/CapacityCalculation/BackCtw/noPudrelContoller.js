@@ -9,17 +9,17 @@ export function noPudrelController(ctw, liftInfo, constants, selectedOptions) {
     function oneRow() {
         if (liftInfo.shaftWidth >= carcassWidths.shaftLength.single)
 
-            return { status: true, occupied_area: carcassDepths.noPudrelCtwDepth.oneRow }
+            return { status: true, occupied_area: carcassDepths.oneRow }
     }
 
     function doubleRowLong() {
         if (liftInfo.shaftWidth >= carcassWidths.shaftLength.double)
-            return { status: true, occupied_area: carcassDepths.noPudrelCtwDepth.oneRow }
+            return { status: true, occupied_area: carcassDepths.doubleRow }
         else
             return { status: false }
     }
     function doubleRowShort() {
-        return { status: true, occupied_area: carcassDepths.noPudrelCtwDepth.doubleRow }
+        return { status: true, occupied_area: carcassDepths.doubleRow }
     }
     return { oneRow: oneRow(), doubleRowLong: doubleRowLong(), doubleRowShort: doubleRowShort() }
 }

@@ -42,6 +42,7 @@ export function carcassLengthCalculator(ctw,liftInfo, constants) {
     );
     
     const MrCarcass = {
+        description:"Projenin Pit ve Oh değerlendirilerek ,Sorgusu yapılan barit türünden kaç adet alabileceği, bunun kg karşılığını gösterir.",
         length: MrCarcassLength,
         piece: Math.floor(MrCarcassLength / ctw.ctwC),
         singleKg: Math.floor((MrCarcassLength / ctw.ctwC) * ctw.ctwKg),
@@ -49,6 +50,7 @@ export function carcassLengthCalculator(ctw,liftInfo, constants) {
     };
 
     const MrlBeam = {
+        description:"Projenin Pit ve Oh değerlendirilerek ,Sorgusu yapılan barit türünden kaç adet alabileceği, bunun kg karşılığını gösterir.",
         length: MrlBeamLength,
         piece: Math.floor(MrlBeamLength / ctw.ctwC),
         singleKg: Math.floor((MrlBeamLength / ctw.ctwC) * ctw.ctwKg),
@@ -56,6 +58,7 @@ export function carcassLengthCalculator(ctw,liftInfo, constants) {
     };
 
     const MrlRailBase = {
+        description:"Projenin Pit ve Oh değerlendirilerek ,Sorgusu yapılan barit türünden kaç adet alabileceği, bunun kg karşılığını gösterir.",
         length: MrlRailBaseLength,
         piece: Math.floor(MrlRailBaseLength / ctw.ctwC),
         singleKg: Math.floor((MrlRailBaseLength / ctw.ctwC) * ctw.ctwKg),

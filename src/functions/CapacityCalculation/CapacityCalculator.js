@@ -1,19 +1,19 @@
-import { BackCtwCabinSize } from "./BackCtw/BackCtwCabinSize";
 import { carcassDepthCalculator } from "./Carcass/DepthCalculator";
 import { carcassLengthCalculator } from "./Carcass/LengthCalculator";
 import { carcassWidthCalculator } from "./Carcass/WidthCalculator";
-import { SideCtwCabinDepth } from "./SideCtw/CabinDepths";
+import { ctwMainDesigner } from "./CtwDesigner/CtwMainDesigner";
 
 
 export default function CapacityCalculator(ctws, liftInfo, constants, selectedOptions) {
    
     const checker = ctws.map((ctw) => {
-        const backCTW=BackCtwCabinSize(ctw, liftInfo, constants, selectedOptions);
-        const sideCTW=SideCtwCabinDepth(selectedOptions, liftInfo);
-        const depth=carcassDepthCalculator(ctw, liftInfo, selectedOptions, constants).pudrelCtwDepth;
+        const depth=carcassDepthCalculator(ctw, liftInfo, selectedOptions, constants);
         const width=carcassWidthCalculator(ctw, selectedOptions, constants);
         const length=carcassLengthCalculator(ctw,liftInfo, constants);
-        return {  ctwName: ctw,backctw:backCTW,sidectw:sideCTW,depth:depth,width:width,length:length};
+        const ctwDesigner=ctwMainDesigner(ctw, liftInfo, constants, selectedOptions);
+
+
+        return {  ctwName: ctw,depth:depth,width:width,length:length,designer:ctwDesigner};
     });
     return checker;  
 }

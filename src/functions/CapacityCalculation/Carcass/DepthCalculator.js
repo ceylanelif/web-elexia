@@ -39,5 +39,5 @@ export function carcassDepthCalculator(ctw, liftInfo, selectedOptions, constants
 
 
 
-    return { noPudrelCtwDepth, pudrelCtwDepth };
+    return { noPudrelCtwDepth, pudrelCtwDepth ,description: "Karkasın Barit eklenmiş derinlik ölçüsü"}
 }

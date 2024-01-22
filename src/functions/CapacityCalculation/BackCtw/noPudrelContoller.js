@@ -4,7 +4,7 @@ import { carcassWidthCalculator } from "../Carcass/WidthCalculator";
 export function noPudrelController(ctw, liftInfo, constants, selectedOptions) {
 
     const carcassDepths = carcassDepthCalculator(ctw, liftInfo, selectedOptions, constants);
-    const carcassWidths = carcassWidthCalculator(ctw, liftInfo, selectedOptions, constants);
+    const carcassWidths = carcassWidthCalculator(ctw, selectedOptions, constants);
 
     function oneRow() {
         if (liftInfo.shaftWidth >= carcassWidths.shaftLength.single)

@@ -43,7 +43,7 @@ export const ShaftConstantDatas = {
   pudrelWidth: 55,//Pudrel genişliği,
   ctwRailSizeMax: 65,//Ağırlık Şasesi Rayı Max Boyu,
   railCarcassWs: 50,//Ağırlık Şasesi Rayı ve Ağırlık Şasesi arasında kalan boşluk,
-  doorPudrelWs: 70,//Kapı ve Pudrel arasında kalan boşluk,
+  doorPudrelWs: 25,//Kapı ve Pudrel arasında kalan boşluk,
   },
   
   cabinWidth: {

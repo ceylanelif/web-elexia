@@ -11,7 +11,7 @@ export default function CapacityCalculator(ctws, liftInfo, constants, selectedOp
         const backCTW=BackCtwCabinSize(ctw, liftInfo, constants, selectedOptions);
         const sideCTW=SideCtwCabinDepth(selectedOptions, liftInfo);
         const depth=carcassDepthCalculator(ctw, liftInfo, selectedOptions, constants).pudrelCtwDepth;
-        const width=carcassWidthCalculator(ctw, liftInfo, selectedOptions, constants);
+        const width=carcassWidthCalculator(ctw, selectedOptions, constants);
         const length=carcassLengthCalculator(ctw,liftInfo, constants);
         return {  ctwName: ctw,backctw:backCTW,sidectw:sideCTW,depth:depth,width:width,length:length};
     });

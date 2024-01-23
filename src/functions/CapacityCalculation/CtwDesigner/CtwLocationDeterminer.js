@@ -30,11 +30,11 @@ export function ctwLocationDeterminer(liftInfo) {
 export function bringCarcassDetails(liftInfo, constants, ctw, carcassType) {
     switch (carcassType) {
       case "MRcarcass":
-        return carcassLengthCalculator(liftInfo, constants, ctw).MrCarcass;
+        return carcassLengthCalculator(ctw,liftInfo, constants).MrCarcass;
       case "MrlRailBase":
-        return carcassLengthCalculator(liftInfo, constants, ctw).MrlRailBase;
+        return carcassLengthCalculator(ctw,liftInfo, constants).MrlRailBase;
       case "MrlBeam":
-        return carcassLengthCalculator(liftInfo, constants, ctw).MrlBeam;
+        return carcassLengthCalculator(ctw,liftInfo, constants).MrlBeam;
       default:
         // Eğer carcassType yukarıdaki case'lerden hiçbirine uymuyorsa bir varsayılan değer veya işlem belirtilebilir
         return null;

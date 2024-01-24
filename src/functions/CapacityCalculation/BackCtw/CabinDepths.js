@@ -1,26 +1,36 @@
-import { noPudrelController } from "./noPudrelContoller";
+import backCtwDesigner from "./BackCtwDesigner";
 
-export function BackCabinDepths(ctw, liftInfo, constants, selectedOptions) {
-    
+export function backCabinDepths(ctw, liftInfo, constants, selectedOptions) {
+
     const doordepth = selectedOptions.DoorDimension.depth;
-    const noPudrel = noPudrelController(ctw, liftInfo, constants, selectedOptions);
+    const ctwDesigner = backCtwDesigner(ctw, liftInfo, selectedOptions, constants);
+    let oneRowCabinDepth;
+    let doubleRowLongCabinDepth;
+    let doubleRowShortCabinDepth;
 
-    const oneRowCabinDepth = {
-        cabinDepth: Math.floor((liftInfo.shaftDepth - doordepth - noPudrel.oneRow.occupied_area)/50)*50,
-        status: noPudrel.oneRow.status
-    };
-
-    const doubleRowShortCabinDepth = {
-        cabinDepth:Math.floor((liftInfo.shaftDepth - doordepth - noPudrel.doubleRowShort.occupied_area)/50)*50,
-        status: noPudrel.doubleRowShort.status
-    };
-
-    const doubleRowLongCabinDepth = {
-        cabinDepth: Math.floor((liftInfo.shaftDepth - doordepth - noPudrel.oneRow.occupied_area)/50)*50,
-        status: noPudrel.doubleRowLong.status
-    };
+    if (ctwDesigner.oneRow.status === true) {
+        oneRowCabinDepth = {
+            cabinDepth: Math.floor((liftInfo.shaftDepth - doordepth - ctwDesigner.oneRow.depthOccupation) / 50) * 50,
+            carcassCapacity: ctwDesigner.oneRow.carcassCapacity
+        }
+    }else {oneRowCabinDepth=null} ;
 
 
+    if (ctwDesigner.longDoubleRow.status === true) {
+        doubleRowLongCabinDepth = {
+            cabinDepth: Math.floor((liftInfo.shaftDepth - doordepth - ctwDesigner.longDoubleRow.depthOccupation) / 50) * 50,
+            carcassCapacity: ctwDesigner.longDoubleRow.carcassCapacity
+        }
+    }else {doubleRowLongCabinDepth=null};
 
-    return { oneRowCabinDepth: oneRowCabinDepth, doubleRowShortCabinDepth: doubleRowShortCabinDepth, doubleRowLongCabinDepth: doubleRowLongCabinDepth }
+
+
+    if (ctwDesigner.shortDoubleRow.status === true) {
+        doubleRowShortCabinDepth = {
+            cabinDepth: Math.floor((liftInfo.shaftDepth - doordepth - ctwDesigner.shortDoubleRow.depthOccupation) / 50) * 50,
+            carcassCapacity: ctwDesigner.shortDoubleRow.carcassCapacity
+        }
+    }else {doubleRowShortCabinDepth=null};
+
+    return { oneRowCabinDepth, doubleRowLongCabinDepth, doubleRowShortCabinDepth }
 }

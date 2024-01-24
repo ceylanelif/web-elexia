@@ -1,38 +1,57 @@
 import { cabinAreaToCapacityFinder } from "../CtwDesigner/CabinAreaToCapacityFinder";
 import { capacityToCtwWeightFinder } from "../CtwDesigner/CapacityToCtwWeightFinder";
-import { BackCabinDepths } from "./CabinDepths";
-import { BackCabinWidths } from "./CabinWidths";
+import { backCabinDepths } from "./CabinDepths";
+import { backCabinWidths } from "./CabinWidths";
 
-export function BackCtwCabinSize(ctw, liftInfo, constants, selectedOptions) {
-  const widths = BackCabinWidths(liftInfo, constants);
-  const depths = BackCabinDepths(ctw, liftInfo, constants, selectedOptions);
-
+export function backCtwCabinSize(ctw, liftInfo, constants, selectedOptions) {
+  const widths = backCabinWidths(liftInfo, constants);
+  const depths = backCabinDepths(ctw, liftInfo, constants, selectedOptions);
 
   const cabinSizes = widths.cabinWidths.map((width) => {
-    const oneRow = {
-      cabinArea: (depths.oneRowCabinDepth.cabinDepth * width) / 1000000,
-      width: width,
-      depth: depths.oneRowCabinDepth.cabinDepth,
-      status: depths.oneRowCabinDepth.status,
-      areaCapacityKg: cabinAreaToCapacityFinder((depths.oneRowCabinDepth.cabinDepth * width) / 1000000),
-      neededBaritWeight:capacityToCtwWeightFinder(cabinAreaToCapacityFinder((depths.oneRowCabinDepth.cabinDepth * width) / 1000000))
-    };
-    const doubleRowShort = {
-      cabinArea: (depths.doubleRowShortCabinDepth.cabinDepth * width) / 1000000,
-      width: width,
-      depth: depths.doubleRowShortCabinDepth.cabinDepth,
-      status: depths.doubleRowShortCabinDepth.status,
-      areaCapacityKg: cabinAreaToCapacityFinder((depths.doubleRowShortCabinDepth.cabinDepth * width) / 1000000),
-      neededBaritWeight:capacityToCtwWeightFinder(cabinAreaToCapacityFinder((depths.doubleRowShortCabinDepth.cabinDepth * width) / 1000000))
-    };
-    const doubleRowLong = {
-      cabinArea: (depths.doubleRowLongCabinDepth.cabinDepth * width) / 1000000,
-      width: width,
-      depth: depths.doubleRowLongCabinDepth.cabinDepth,
-      status: depths.doubleRowLongCabinDepth.status,
-      areaCapacityKg: cabinAreaToCapacityFinder((depths.doubleRowLongCabinDepth.cabinDepth * width) / 1000000),
-      neededBaritWeight:capacityToCtwWeightFinder(cabinAreaToCapacityFinder((depths.doubleRowLongCabinDepth.cabinDepth * width) / 1000000))
-    };
+    const oneRowCabinDepth = depths.oneRowCabinDepth;
+    const doubleRowShortCabinDepth = depths.doubleRowShortCabinDepth;
+    const doubleRowLongCabinDepth = depths.doubleRowLongCabinDepth;
+
+    const oneRow = oneRowCabinDepth
+      ? {
+          cabinArea: (oneRowCabinDepth.cabinDepth * width) / 1000000,
+          width: width,
+          depth: oneRowCabinDepth.cabinDepth,
+          areaCapacityKg: cabinAreaToCapacityFinder((oneRowCabinDepth.cabinDepth * width) / 1000000),
+          neededBaritWeight: capacityToCtwWeightFinder(
+            cabinAreaToCapacityFinder((oneRowCabinDepth.cabinDepth * width) / 1000000),          
+          ),
+        }
+      : null;
+
+    const doubleRowShort = doubleRowShortCabinDepth
+      ? {
+          cabinArea: (doubleRowShortCabinDepth.cabinDepth * width) / 1000000,
+          width: width,
+          depth: doubleRowShortCabinDepth.cabinDepth,
+          areaCapacityKg: cabinAreaToCapacityFinder(
+            (doubleRowShortCabinDepth.cabinDepth * width) / 1000000
+          ),
+          neededBaritWeight: capacityToCtwWeightFinder(
+            cabinAreaToCapacityFinder((doubleRowShortCabinDepth.cabinDepth * width) / 1000000)
+          ),
+        }
+      : null;
+
+    const doubleRowLong = doubleRowLongCabinDepth
+      ? {
+          cabinArea: (doubleRowLongCabinDepth.cabinDepth * width) / 1000000,
+          width: width,
+          depth: doubleRowLongCabinDepth.cabinDepth,
+          areaCapacityKg: cabinAreaToCapacityFinder(
+            (doubleRowLongCabinDepth.cabinDepth * width) / 1000000
+          ),
+          neededBaritWeight: capacityToCtwWeightFinder(
+            cabinAreaToCapacityFinder((doubleRowLongCabinDepth.cabinDepth * width) / 1000000)
+          ),
+        }
+      : null;
+
     return { oneRow, doubleRowShort, doubleRowLong };
   });
 

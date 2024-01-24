@@ -1,3 +1,4 @@
+import { backCtwCabinSize } from "../BackCtw/BackCtwCabinSize";
 import { carcassDepthCalculator } from "../Carcass/DepthCalculator";
 import { carcassLengthCalculator } from "../Carcass/LengthCalculator";
 import { carcassWidthCalculator } from "../Carcass/WidthCalculator";
@@ -11,20 +12,10 @@ export function ctwMainDesigner(ctw, liftInfo, constants, selectedOptions) {
 
   //1.**** Ağırlık Konumu Belirleme************* */
  const ctwLocation=ctwLocationDeterminer(liftInfo);
- //2.***Ağırlık Konumlarına Göre Ağırlıkların İşgal Ettikleri Alanların Bulunması************************** */
- let occupiedAreas;
-
- if (ctwLocation.location.sideCtw && ctwLocation.location.backCtw) {
-   occupiedAreas = "Both side and back CTW are true";
- } else if (ctwLocation.location.sideCtw) {
-   occupiedAreas = "Side CTW is true";
- } else if (ctwLocation.location.backCtw) {
-   occupiedAreas = "Back CTW is true";
- } else {
-   occupiedAreas = "None of the conditions met";
- }
-
- 
-  return {ctwLocation, occupiedAreas
+ //2.***Ağırlık Konumlarına Göre kabin ölçüleri************************** */
+ const cabinSize=backCtwCabinSize(ctw, liftInfo, constants, selectedOptions); //arkadan kabin ölçüleri
+          //yandan kabin ölçüleri
+ //************karkas kapasitesine göre kabin ölçüsü filitrelemek  */
+  return {ctwLocation,cabinSize
   };
 }

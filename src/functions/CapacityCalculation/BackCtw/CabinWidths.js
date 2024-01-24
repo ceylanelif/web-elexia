@@ -1,5 +1,5 @@
 
-export const BackCabinWidths = (liftInfo, constants) => {
+export const backCabinWidths = (liftInfo, constants) => {
   const widthConstants = constants.cabinWidth;
   const width = liftInfo.shaftWidth - 2 * (widthConstants.railCabinWS + widthConstants.mainRailSizeMax);
   const cabinWidths = [];

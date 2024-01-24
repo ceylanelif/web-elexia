@@ -1,21 +1,83 @@
-import backCtwDesigner from "./BackCtw/BackCtwDesigner";
-import { noPudrelController } from "./BackCtw/noPudrelContoller";
-import { carcassDepthCalculator } from "./Carcass/DepthCalculator";
-import { carcassLengthCalculator } from "./Carcass/LengthCalculator";
-import { carcassWidthCalculator } from "./Carcass/WidthCalculator";
-import { bringCarcassDetails, ctwLocationDeterminer } from "./CtwDesigner/CtwLocationDeterminer";
 import { ctwMainDesigner } from "./CtwDesigner/CtwMainDesigner";
+import { SideCtwCabinDepth } from "./SideCtw/CabinDepths";
 
 
 export default function CapacityCalculator(ctws, liftInfo, constants, selectedOptions) {
-   
+
     const checker = ctws.map((ctw) => {
-        const depth=carcassDepthCalculator(ctw, liftInfo, selectedOptions, constants);
-        const width=carcassWidthCalculator(ctw, selectedOptions, constants);
-        const length=carcassLengthCalculator(ctw,liftInfo, constants);
-         const ctwDesigner=backCtwDesigner(ctw, liftInfo, selectedOptions, constants);
-      
-        return {  ctwName: ctw,depth:depth,width:width,length:length,designer:ctwDesigner};
+        // const csize=ctwMainDesigner(ctw, liftInfo, constants, selectedOptions).cabinSize
+        // const ctwLocation=ctwMainDesigner(ctw, liftInfo, constants, selectedOptions).ctwLocation    
+        // const sideCtwDepths=SideCtwCabinDepth(selectedOptions, liftInfo);
+        //     return{csize,ctwLocation,sideCtwDepths}
+        const reverseLogic = {
+            id: ctw.id,
+            name: ctw.ctwName,
+            material: ctw.ctwMaterial,
+            length: ctw.cwtA,
+            carcassType: null,//kuyuya uygun karkas tipi
+            singleCarcassCapacity: null,
+            doubleCarcassCapacity: null,
+            backCtw: {
+                oneRow: {
+                    cabinSize: null,
+                    cabinCapacity: null,
+                    neededCtwWeight: null,
+                    carcassWidth: null,
+                    railBetween: null,
+                    weightStatus: null,
+                    generalStatus: null,
+                },
+                longDoubleRow: {
+                    cabinSize: null,
+                    cabinCapacity: null,
+                    neededCtwWeight: null,
+                    carcassWidth: null,
+                    railBetween: null,
+                    weightStatus: null,
+                    generalStatus: null,
+                },
+                shortDoubleRow: {
+                    cabinSize: null,
+                    cabinCapacity: null,
+                    neededCtwWeight: null,
+                    carcassWidth: null,
+                    railBetween: null,
+                    weightStatus: null,
+                    generalStatus: null,
+                }
+            },  
+            sideCtw: {
+                oneRow: {
+                    cabinSize: null,
+                    cabinCapacity: null,
+                    neededCtwWeight: null,
+                    carcassWidth: null,
+                    railBetween: null,
+                    weightStatus: null,
+                    generalStatus: null,
+                },
+                longDoubleRow: {
+                    cabinSize: null,
+                    cabinCapacity: null,
+                    neededCtwWeight: null,
+                    carcassWidth: null,
+                    railBetween: null,
+                    weightStatus: null,
+                    generalStatus: null,
+                },
+                shortDoubleRow: {
+                    cabinSize: null,
+                    cabinCapacity: null,
+                    neededCtwWeight: null,
+                    carcassWidth: null,
+                    railBetween: null,
+                    weightStatus: null,
+                    generalStatus: null,
+                }
+            },
+
+        }
+return reverseLogic
     });
-    return checker;  
+    return checker;
 }

@@ -1,3 +1,5 @@
+import { backCtwCabinSize } from "./BackCtw/BackCtwCabinSize";
+import { bringCarcassDetails, ctwLocationDeterminer } from "./CtwDesigner/CtwLocationDeterminer";
 import { ctwMainDesigner } from "./CtwDesigner/CtwMainDesigner";
 import { SideCtwCabinDepth } from "./SideCtw/CabinDepths";
 
@@ -5,21 +7,21 @@ import { SideCtwCabinDepth } from "./SideCtw/CabinDepths";
 export default function CapacityCalculator(ctws, liftInfo, constants, selectedOptions) {
 
     const checker = ctws.map((ctw) => {
-        // const csize=ctwMainDesigner(ctw, liftInfo, constants, selectedOptions).cabinSize
-        // const ctwLocation=ctwMainDesigner(ctw, liftInfo, constants, selectedOptions).ctwLocation    
-        // const sideCtwDepths=SideCtwCabinDepth(selectedOptions, liftInfo);
-        //     return{csize,ctwLocation,sideCtwDepths}
+       const locationDeterminer=ctwLocationDeterminer(liftInfo);
+       const location=bringCarcassDetails(liftInfo, constants, ctw, locationDeterminer.carcassType);
+        const backCabinSize=backCtwCabinSize(ctw, liftInfo, constants, selectedOptions);
+
         const reverseLogic = {
-            id: ctw.id,
+            id: ctw.ctwId,
             name: ctw.ctwName,
             material: ctw.ctwMaterial,
-            length: ctw.cwtA,
-            carcassType: null,//kuyuya uygun karkas tipi
-            singleCarcassCapacity: null,
-            doubleCarcassCapacity: null,
+            length: ctw.ctwA,
+            carcassType: locationDeterminer.carcassType,//kuyuya uygun karkas tipi
+            singleCarcassCapacity: location.singleKg,
+            doubleCarcassCapacity: location.doubleKg,
             backCtw: {
                 oneRow: {
-                    cabinSize: null,
+                    cabinSize: backCabinSize.cabinSizes.map((cabinSize) => cabinSize.oneRow),
                     cabinCapacity: null,
                     neededCtwWeight: null,
                     carcassWidth: null,

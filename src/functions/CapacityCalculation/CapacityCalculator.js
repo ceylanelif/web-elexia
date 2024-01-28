@@ -20,17 +20,7 @@ export default function CapacityCalculator(ctws, liftInfo, constants, selectedOp
             singleCarcassCapacity: location.singleKg,
             doubleCarcassCapacity: location.doubleKg,
             backCtw: {
-                oneRow: {
-                    cabinSizes: backCabinSize.cabinSizes.map((cabinSize) => cabinSize.oneRow),
-                },
-                longDoubleRow: {
-                    cabinSizes: backCabinSize.cabinSizes.map((cabinSize) => cabinSize.doubleRowLong),
-
-                },
-                shortDoubleRow: {
-                    cabinSizes: backCabinSize.cabinSizes.map((cabinSize) => cabinSize.doubleRowShort),
-
-                }
+                cabinSize: backCabinSize,
             },  
             sideCtw: {
                 oneRow: {

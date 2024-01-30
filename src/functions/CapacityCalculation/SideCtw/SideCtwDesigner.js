@@ -5,11 +5,11 @@ import { bringCarcassDetails, ctwLocationDeterminer } from "../CtwDesigner/CtwLo
 export default function sideCtwDesigner(ctw, liftInfo, selectedOptions, constants) {
     const width = carcassWidthCalculator(ctw, selectedOptions, constants);
     const depth = carcassDepthCalculator(ctw, liftInfo, selectedOptions, constants).pudrelCtwDepth;
-    const location = ctwLocationDeterminer(liftInfo).carcassType; // Corrected function name
+    const location = ctwLocationDeterminer(liftInfo).carcassType; 
     const carcassCapacity = bringCarcassDetails(liftInfo,constants,ctw,location);
     
     let possibleWidths;
-    // Çift Sıra Uzun
+    
     if (liftInfo.shaftDepth >= width.doorLength.double) {
         possibleWidths = {
             longDoubleRow: { status: true, widthOccupation: depth.oneRow, carcassCapacity: carcassCapacity.doubleKg },

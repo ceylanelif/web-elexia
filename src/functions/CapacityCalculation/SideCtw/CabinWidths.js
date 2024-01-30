@@ -1,8 +1,10 @@
 import sideCtwDesigner from "./SideCtwDesigner";
 
 export function sideCabinWidths(ctw, liftInfo, constants, selectedOptions){
+    
     const doordepth = selectedOptions.DoorDimension.depth;
     const ctwDesigner = sideCtwDesigner(ctw, liftInfo, selectedOptions, constants);
+    const otherWidthConstants=constants.cabinWidth.pudrelConsole+(constants.cabinWidth.mainRailSizeMax+constants.cabinWidth.railCabinWS)*2;
     let oneRowCabinWidth;
     let doubleRowLongCabinWidth;
     let doubleRowShortCabinWidth;
@@ -17,7 +19,7 @@ export function sideCabinWidths(ctw, liftInfo, constants, selectedOptions){
 
     if (ctwDesigner.longDoubleRow.status === true) {
         doubleRowLongCabinWidth = {
-            cabinDepth: Math.floor((liftInfo.shaftDepth - doordepth - ctwDesigner.longDoubleRow.widthOccupation) / 50) * 50,
+            cabinDepth: Math.floor((liftInfo.shaftWidth - doordepth - ctwDesigner.longDoubleRow.widthOccupation) / 50) * 50,
             carcassCapacity: ctwDesigner.longDoubleRow.carcassCapacity
         }
     }else {doubleRowLongCabinWidth=null};
@@ -26,7 +28,7 @@ export function sideCabinWidths(ctw, liftInfo, constants, selectedOptions){
 
     if (ctwDesigner.shortDoubleRow.status === true) {
         doubleRowShortCabinWidth = {
-            cabinDepth: Math.floor((liftInfo.shaftDepth - doordepth - ctwDesigner.shortDoubleRow.widthOccupation) / 50) * 50,
+            cabinDepth: Math.floor((liftInfo.shaftWidth - doordepth - ctwDesigner.shortDoubleRow.widthOccupation) / 50) * 50,
             carcassCapacity: ctwDesigner.shortDoubleRow.carcassCapacity
         }
     }else {doubleRowShortCabinWidth=null};

@@ -1,4 +1,4 @@
-export function sideCabinDepths(selectedOptions, liftInfo) {
+export function sideCabinDepths(liftInfo,selectedOptions) {
   const shaftDepth = liftInfo.shaftDepth;
   const doorDepth = selectedOptions.DoorDimension.depth;
   let cabinToBackWallWs = 75;

@@ -2,12 +2,13 @@ import { cabinAreaToCapacityFinder } from "../CtwDesigner/CabinAreaToCapacityFin
 import neededBaritWeightFinder from "../CtwDesigner/NededBaritWeightFinder";
 import railBetweenFinder from "../CtwDesigner/RailBetweenFinder";
 import { weightStatusDeterminer } from "../CtwDesigner/WeightStatusDeterminer";
-import { backCabinDepths } from "./CabinDepths";
-import { backCabinWidths } from "./CabinWidths";
+import { sideCabinDepths } from "./CabinDepths";
+import { sideCabinWidths } from "./CabinWidths";
 
-export function backCtwCabinSize(ctw, liftInfo, constants, selectedOptions) {
-  const widths = backCabinWidths(liftInfo, constants);
-  const depths = backCabinDepths(ctw, liftInfo, constants, selectedOptions);
+
+export function sideCtwCabinSize(ctw, liftInfo, constants, selectedOptions) {
+  const widths = sideCabinWidths(ctw, liftInfo, constants, selectedOptions);
+  const depths = sideCabinDepths(ctw, liftInfo, constants, selectedOptions);
 
   const oneRowCabinDepth = depths.oneRowCabinDepth;
   const doubleRowShortCabinDepth = depths.doubleRowShortCabinDepth;

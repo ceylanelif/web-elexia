@@ -1,7 +1,7 @@
 import { backCtwCabinSize } from "./BackCtw/BackCtwCabinSize";
 import { bringCarcassDetails, ctwLocationDeterminer } from "./CtwDesigner/CtwLocationDeterminer";
-import { ctwMainDesigner } from "./CtwDesigner/CtwMainDesigner";
-import { SideCtwCabinDepth } from "./SideCtw/CabinDepths";
+import { sideCtwCabinSize } from "./SideCtw/SideCtwCabinSize";
+
 
 
 export default function CapacityCalculator(ctws, liftInfo, constants, selectedOptions) {
@@ -10,6 +10,7 @@ export default function CapacityCalculator(ctws, liftInfo, constants, selectedOp
        const locationDeterminer=ctwLocationDeterminer(liftInfo);
        const location=bringCarcassDetails(liftInfo, constants, ctw, locationDeterminer.carcassType);
         const backCabinSize=backCtwCabinSize(ctw, liftInfo, constants, selectedOptions);
+        const sideCabinSize=sideCtwCabinSize(ctw, liftInfo, constants, selectedOptions);
 
         const reverseLogic = {
             id: ctw.ctwId,
@@ -23,33 +24,7 @@ export default function CapacityCalculator(ctws, liftInfo, constants, selectedOp
                 cabinSize: backCabinSize,
             },  
             sideCtw: {
-                oneRow: {
-                    cabinSize: null,
-                    cabinCapacity: null,
-                    neededCtwWeight: null,
-                    carcassWidth: null,
-                    railBetween: null,
-                    weightStatus: null,
-                    generalStatus: null,
-                },
-                longDoubleRow: {
-                    cabinSize: null,
-                    cabinCapacity: null,
-                    neededCtwWeight: null,
-                    carcassWidth: null,
-                    railBetween: null,
-                    weightStatus: null,
-                    generalStatus: null,
-                },
-                shortDoubleRow: {
-                    cabinSize: null,
-                    cabinCapacity: null,
-                    neededCtwWeight: null,
-                    carcassWidth: null,
-                    railBetween: null,
-                    weightStatus: null,
-                    generalStatus: null,
-                }
+                cabinSize: sideCabinSize,
             },
 
         }

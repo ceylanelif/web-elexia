@@ -10,9 +10,9 @@ export function sideCtwCabinSize(ctw, liftInfo, constants, selectedOptions) {
   const widths = sideCabinWidths(ctw, liftInfo, constants, selectedOptions);
   const depths = sideCabinDepths(liftInfo, selectedOptions);
 
-  const oneRowCabinDepth = depths.oneRowCabinDepth;
-  const doubleRowShortCabinDepth = depths.doubleRowShortCabinDepth;
-  const doubleRowLongCabinDepth = depths.doubleRowLongCabinDepth;
+  const oneRowCabinWidths =null ;
+  const doubleRowShortCabinWidths =null ;
+  const doubleRowLongCabinWidths = null;
   const cabinSizes = widths.cabinWidths.map((width) => {
 
     const oneRow = oneRowCabinDepth

@@ -48,7 +48,7 @@ export const ShaftConstantDatas = {
   
   cabinWidth: {
     railWallConsoleMin: 70,
-    railWallConsoleMax: 310,
+    railWallConsoleMax: 180,
     railCabinWS: 75,//Anaray ile kabin arasındaki boşluk
     mainRailSizeMax: 75,//90 B ray 
 

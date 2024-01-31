@@ -1,7 +1,7 @@
 import { backCtwCabinSize } from "./BackCtw/BackCtwCabinSize";
 import { bringCarcassDetails, ctwLocationDeterminer } from "./CtwDesigner/CtwLocationDeterminer";
+import { sideCabinDepths } from "./SideCtw/CabinDepths";
 import { sideCabinWidths } from "./SideCtw/CabinWidths";
-import { sideCtwCabinSize } from "./SideCtw/SideCtwCabinSize";
 
 
 
@@ -12,6 +12,7 @@ export default function CapacityCalculator(ctws, liftInfo, constants, selectedOp
        const location=bringCarcassDetails(liftInfo, constants, ctw, locationDeterminer.carcassType);
         const backCabinSize=backCtwCabinSize(ctw, liftInfo, constants, selectedOptions);
         //const sideCabinSize=sideCtwCabinSize(ctw, liftInfo, constants, selectedOptions);
+        const cabinDepth=sideCabinDepths(liftInfo,selectedOptions);
         const cabinWidth=sideCabinWidths(ctw, liftInfo, constants, selectedOptions)
         const reverseLogic = {
             id: ctw.ctwId,
@@ -26,7 +27,8 @@ export default function CapacityCalculator(ctws, liftInfo, constants, selectedOp
             },  
             sideCtw: {
                 //cabinSize: sideCabinSize,
-            cabinWidth:cabinWidth
+            cabinWidth:cabinWidth,
+            cabinDepth:cabinDepth
             },
 
         }

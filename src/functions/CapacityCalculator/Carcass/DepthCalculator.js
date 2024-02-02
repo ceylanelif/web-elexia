@@ -22,5 +22,5 @@ export function carcassDepthCalculator(ctw, constants) {
         fatCtwWithPudrel,
         description: "Karkasın Barit eklenmiş derinlik ölçüsü"
     }
-    return { carcassDepth}
+    return  carcassDepth;
 }

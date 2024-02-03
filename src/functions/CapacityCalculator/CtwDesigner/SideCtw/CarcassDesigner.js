@@ -1,14 +1,15 @@
 
+import { bringCarcassLengthAndLocation } from "../../Carcass/CtwLocationDeterminer";
 import { carcassDepthCalculator } from "../../Carcass/DepthCalculator";
 import { carcassWidths } from "../../Carcass/WidthCalculator";
 import doorSpaceReducer from "../DoorSpaceReducer";
 
-export default function cabinWidth(ctw, liftInfo, constants, selectedOptions) {
+export default function carcassDesigner(ctw, liftInfo, constants, selectedOptions) {
     //1.adım: kapıdan alan kalıyor mu?
 
     //önce kapıdan alan kalıyor mu ona bakalım
     //sonra çift sıra için kapıdan yer kalıyor mu ona bakalım
-
+    const carcasslength = bringCarcassLengthAndLocation(liftInfo, constants, ctw);
     const widthRemainedAfterDoor = doorSpaceReducer(liftInfo, selectedOptions, constants).emptyWidthRemains;
     const depthRemainedAfterDoor = doorSpaceReducer(liftInfo, selectedOptions, constants).emptyDepthRemains;
     const carcassDepth = carcassDepthCalculator(ctw, constants);
@@ -49,7 +50,13 @@ export default function cabinWidth(ctw, liftInfo, constants, selectedOptions) {
             fatCtwType = "doorLenght";
         }
 
-        return { emptyWidthForFat, slimCtwType, emptyWidthForSlim, fatCtwType, description: "Ağırlık Sistemi için kullanılabilir boş alanlar  " };
+        return {
+            emptyWidthForFat,
+            slimCtwType,
+            emptyWidthForSlim,
+            fatCtwType,
+            description: "Ağırlık Sistemi için kullanılabilir boş alanlar  "
+        };
     }
 
     //2.adım: Ağırlık sisteminin toplam uzunluğu belirleme
@@ -58,38 +65,68 @@ export default function cabinWidth(ctw, liftInfo, constants, selectedOptions) {
 
     function maxCtwBaritCapacity() {
         const { emptyWidthForFat, slimCtwType, emptyWidthForSlim, fatCtwType } = usableCarcassWidths();
+        
         let fatCarcassWidth;
         let fatDescription;
-    
+        let fatLongDoubleRowBarit;
+        function maxbaritCapacityInKg(drowStatus) {
+            if (drowStatus === true) {
+                return carcasslength.CarcassLengthDetails.doubleKg
+                ;
+            } else {    
+                return carcasslength.CarcassLengthDetails.singleKg;
+            }
+
+        }
         if (emptyWidthForFat >= carcassWidth.double) {
             fatCarcassWidth = carcassWidth.double;
+            fatLongDoubleRowBarit = true;
             fatDescription = "Çift Sıra Ağırlık Sistemi Kapasitesi";
+
         } else if (emptyWidthForFat >= carcassWidth.single) {
             fatCarcassWidth = carcassWidth.single;
+            fatLongDoubleRowBarit = false;
             fatDescription = "Tek Sıra Ağırlık Sistemi Kapasitesi";
         } else {
             fatCarcassWidth = null;
             fatDescription = "Barit uygun değil";
         }
-    
+
         let slimCarcassWidth;
         let slimDescription;
-    
+        let slimLongDoubleRowBarit;
+
         if (emptyWidthForSlim >= carcassWidth.double) {
             slimCarcassWidth = carcassWidth.double;
+            slimLongDoubleRowBarit = false;
             slimDescription = "Çift Sıra Ağırlık Sistemi Kapasitesi";
         } else if (emptyWidthForSlim >= carcassWidth.single) {
             slimCarcassWidth = carcassWidth.single;
+            slimLongDoubleRowBarit = false;
             slimDescription = "Tek Sıra Ağırlık Sistemi Kapasitesi";
         } else {
             slimCarcassWidth = null;
             slimDescription = "Barit uygun değil";
         }
-    
-        return { slimCarcassWidth, slimDescription, fatCarcassWidth, fatDescription };
-    }
-    
 
-    return { pudrelicinbosalan:  usableCarcassWidths(),maxBaritLength:maxCtwBaritCapacity()};
+        return {
+            slimCarcassWidth,
+            slimDescription,
+            slimCtwType,
+            slimTypeMaxBaritCapacity: maxbaritCapacityInKg(slimLongDoubleRowBarit),
+            slimLongDoubleRowBarit,
+            fatCarcassWidth,
+            fatDescription,
+            fatCtwType,
+            fatTypeMaxBaritCapacity: maxbaritCapacityInKg(fatLongDoubleRowBarit),
+            fatLongDoubleRowBarit,
+        };
+    }
+
+
+
+    return { pudrelicinbosalan: usableCarcassWidths(), maxBaritLength: maxCtwBaritCapacity() };
 
 }
+
+////STATÜ KONTROLÜ KALDI AĞIRLIK YETERLİ Mİ, BARİT SIĞIYOR MU. iKİSİDE OKEYSE BU BARİT KULLANILABİLİR.

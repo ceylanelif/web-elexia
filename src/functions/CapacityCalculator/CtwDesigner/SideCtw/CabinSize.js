@@ -1,10 +1,12 @@
 import { carcassDepthCalculator } from "../../Carcass/DepthCalculator";
+import { cabinAreaToCapacityFinder } from "../CabinAreaToCapacityFinder";
+import { capacityToCtwWeightFinder } from "../CapacityToCtwWeightFinder";
 import { sideCabinDepths } from "./CabinDepths";
 
 export default function cabinSize(ctw, liftInfo, constants, selectedOptions) {
     const { slimCtwWithPudrel, fatCtwWithPudrel } = carcassDepthCalculator(ctw, constants);
-    const cdepth=sideCabinDepths(liftInfo, selectedOptions);
-    console.log(cdepth);
+   
+   
     function cabinWidthWithouthWallConsole(ctwDepthType, wallConsoleWidth) {
         const sideCtwCabinWidth =
             liftInfo.shaftWidth -
@@ -24,11 +26,11 @@ export default function cabinSize(ctw, liftInfo, constants, selectedOptions) {
             const slimCabinWidth = cabinWidthWithouthWallConsole(slimCtwWithPudrel, i);
             const fatCabinWidth = cabinWidthWithouthWallConsole(fatCtwWithPudrel, i);
 
-            if (slimCabinWidth % 50 === 0) {
+            if (slimCabinWidth % 50 === 0 && slimCabinWidth >= 800) {
                 widths.push({ size: slimCabinWidth, consoleWidth: i ,type:"slim" });
             }
 
-            if (fatCabinWidth % 50 === 0) {
+            if (fatCabinWidth % 50 === 0 && fatCabinWidth >= 800) {
                 widths.push({ size: fatCabinWidth, consoleWidth: i ,type:"fat" });
             }
         }
@@ -44,7 +46,18 @@ export default function cabinSize(ctw, liftInfo, constants, selectedOptions) {
         filteredDepths.forEach((depth) => {
             widths.forEach((cabinWidth) => {
                 const cabinSize = (depth.cabinDepth * cabinWidth.size)/1000000;
-                sizes.push(cabinSize);
+                const type=cabinWidth.type;
+                sizes.push({ 
+                    size: cabinSize, 
+                    capacity:cabinAreaToCapacityFinder(cabinSize).cabinAreaInKg,
+                    neededBarit:cabinAreaToCapacityFinder(cabinSize).neededBarit,
+                    depth: depth.cabinDepth,
+                    cabinToWallBackSpace: depth.cabinToBackWallWs, 
+                    width: cabinWidth.size, 
+                    wallSideConsoleWidth: cabinWidth.consoleWidth,
+                    consoleWidth: cabinWidth.consoleWidth,
+                    type });
+                
             });
         });
 

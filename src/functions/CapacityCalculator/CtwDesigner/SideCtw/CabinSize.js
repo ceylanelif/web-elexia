@@ -1,7 +1,7 @@
 import { carcassDepthCalculator } from "../../Carcass/DepthCalculator";
 import { cabinAreaToCapacityFinder } from "../CabinAreaToCapacityFinder";
-import { capacityToCtwWeightFinder } from "../CapacityToCtwWeightFinder";
 import { sideCabinDepths } from "./CabinDepths";
+import carcassDesigner from "./CarcassDesigner";
 
 export default function cabinSize(ctw, liftInfo, constants, selectedOptions) {
     const { slimCtwWithPudrel, fatCtwWithPudrel } = carcassDepthCalculator(ctw, constants);
@@ -56,7 +56,9 @@ export default function cabinSize(ctw, liftInfo, constants, selectedOptions) {
                     width: cabinWidth.size, 
                     wallSideConsoleWidth: cabinWidth.consoleWidth,
                     consoleWidth: cabinWidth.consoleWidth,
-                    type });
+                    type,
+                    baritDetails:carcassDesigner(ctw, liftInfo, constants, selectedOptions).maxBaritCapacity
+                });
                 
             });
         });

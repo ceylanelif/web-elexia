@@ -42,6 +42,7 @@ export default function cabinSize(ctw, liftInfo, constants, selectedOptions) {
         const widths = getCabinWidths();
         const sizes = [];
         const filteredDepths = sideCabinDepths(liftInfo, selectedOptions);
+        
 
         filteredDepths.forEach((depth) => {
             widths.forEach((cabinWidth) => {

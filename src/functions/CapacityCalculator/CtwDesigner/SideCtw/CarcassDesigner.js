@@ -109,6 +109,9 @@ export default function carcassDesigner(ctw, liftInfo, constants, selectedOption
             slimDescription = "Barit uygun değil";
         }
 
+     
+
+
         return {
             slimCarcassWidth,
             slimDescription,
@@ -128,5 +131,7 @@ export default function carcassDesigner(ctw, liftInfo, constants, selectedOption
     return { pudrelicinbosalan: usableCarcassWidths(), maxBaritCapacity: maxCtwBaritCapacity() };
 
 }
+
+
 
 ////STATÜ KONTROLÜ KALDI AĞIRLIK YETERLİ Mİ, BARİT SIĞIYOR MU. iKİSİDE OKEYSE BU BARİT KULLANILABİLİR.

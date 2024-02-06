@@ -49,6 +49,7 @@ export default function cabinSize(ctw, liftInfo, constants, selectedOptions) {
                 const cabinSize = (depth.cabinDepth * cabinWidth.size)/1000000;
                 const type=cabinWidth.type;
                 sizes.push({ 
+                    name:ctw.ctwName,
                     size: cabinSize, 
                     capacity:cabinAreaToCapacityFinder(cabinSize).cabinAreaInKg,
                     neededBarit:cabinAreaToCapacityFinder(cabinSize).neededBarit,
@@ -58,7 +59,9 @@ export default function cabinSize(ctw, liftInfo, constants, selectedOptions) {
                     wallSideConsoleWidth: cabinWidth.consoleWidth,
                     consoleWidth: cabinWidth.consoleWidth,
                     type,
-                    baritDetails:carcassDesigner(ctw, liftInfo, constants, selectedOptions).maxBaritCapacity
+                    baritDetails:carcassDesigner(ctw, liftInfo, constants, selectedOptions).maxBaritCapacity,
+                    fatTypeMaxBariCapacity:carcassDesigner(ctw, liftInfo, constants, selectedOptions).maxBaritCapacity.fatTypeMaxBaritCapacity,
+                    slimTypeMaxBariCapacity:carcassDesigner(ctw, liftInfo, constants, selectedOptions).maxBaritCapacity.slimTypeMaxBaritCapacity,
                 });
                 
             });

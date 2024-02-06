@@ -4,7 +4,8 @@ import { carcassDepthCalculator } from "../../Carcass/DepthCalculator";
 import { carcassWidths } from "../../Carcass/WidthCalculator";
 import doorSpaceReducer from "../DoorSpaceReducer";
 
-export default function carcassDesigner(ctw, liftInfo, constants, selectedOptions) {
+
+export default function carcassDesigner(ctw, liftInfo, constants, selectedOptions, neededBarit) {
     //1.adım: kapıdan alan kalıyor mu?
 
     //önce kapıdan alan kalıyor mu ona bakalım
@@ -14,6 +15,7 @@ export default function carcassDesigner(ctw, liftInfo, constants, selectedOption
     const depthRemainedAfterDoor = doorSpaceReducer(liftInfo, selectedOptions, constants).emptyDepthRemains;
     const carcassDepth = carcassDepthCalculator(ctw, constants);
     const carcassWidth = carcassWidths(ctw, selectedOptions, constants);
+
     function usableCarcassWidths() {
         let isEmptySpaceForSlim;
         let isEmptySpaceForFat;
@@ -65,15 +67,15 @@ export default function carcassDesigner(ctw, liftInfo, constants, selectedOption
 
     function maxCtwBaritCapacity() {
         const { emptyWidthForFat, slimCtwType, emptyWidthForSlim, fatCtwType } = usableCarcassWidths();
-        
+
         let fatCarcassWidth;
         let fatDescription;
         let fatLongDoubleRowBarit;
         function maxbaritCapacityInKg(drowStatus) {
             if (drowStatus === true) {
                 return carcasslength.CarcassLengthDetails.doubleKg
-                ;
-            } else {    
+                    ;
+            } else {
                 return carcasslength.CarcassLengthDetails.singleKg;
             }
 
@@ -109,26 +111,31 @@ export default function carcassDesigner(ctw, liftInfo, constants, selectedOption
             slimDescription = "Barit uygun değil";
         }
 
-     
+        let slimTypeMaxBaritCapacity = maxbaritCapacityInKg(slimLongDoubleRowBarit);
+        let fatTypeMaxBaritCapacity = maxbaritCapacityInKg(fatLongDoubleRowBarit);
 
 
         return {
             slimCarcassWidth,
             slimDescription,
             slimCtwType,
-            slimTypeMaxBaritCapacity: maxbaritCapacityInKg(slimLongDoubleRowBarit),
+            slimTypeMaxBaritCapacity,
             slimLongDoubleRowBarit,
             fatCarcassWidth,
             fatDescription,
             fatCtwType,
-            fatTypeMaxBaritCapacity: maxbaritCapacityInKg(fatLongDoubleRowBarit),
+            fatTypeMaxBaritCapacity,
             fatLongDoubleRowBarit,
         };
     }
 
 
 
-    return { pudrelicinbosalan: usableCarcassWidths(), maxBaritCapacity: maxCtwBaritCapacity() };
+
+    return {
+        pudrelicinbosalan: usableCarcassWidths(),
+        maxBaritCapacity: maxCtwBaritCapacity(),
+    };
 
 }
 

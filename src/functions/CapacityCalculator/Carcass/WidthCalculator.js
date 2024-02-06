@@ -13,5 +13,5 @@ export function carcassWidths(ctw, selectedOptions, constants) {
     const doorLength = {double:doorLengthPudrel +ctw.two_X_a, single:doorLengthPudrel +ctw.ctwA};
     const double=shaftLengthPudrel +ctw.two_X_a
     const single=shaftLengthPudrel +ctw.ctwA
-    return {double,single,description:"Ağırlık sisteminin genişliği barit dahil"};
+    return {shaftLength,doorLength,description:"Ağırlık sisteminin genişliği barit dahil"};
 }

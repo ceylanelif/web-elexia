@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   shaftWidth: 1600,
-  shaftDepth: 1600,
+  shaftDepth: 1200,
   overhead: 3800,
   travelDistance: 16000,
   pit: 1500,

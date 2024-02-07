@@ -158,7 +158,7 @@ export default function carcassDesigner(ctw, liftInfo, constants, selectedOption
 
 
     return {
-        pudrelicinbosalan: usableCarcassWidths(),
+        bariticinbosalan: usableCarcassWidths(),
         maxBaritCapacity: maxCtwBaritCapacity(),
     };
 

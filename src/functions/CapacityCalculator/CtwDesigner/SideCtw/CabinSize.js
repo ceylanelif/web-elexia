@@ -48,11 +48,30 @@ export default function cabinSize(ctw, liftInfo, constants, selectedOptions) {
             widths.forEach((cabinWidth) => {
                 const cabinSize = (depth.cabinDepth * cabinWidth.size)/1000000;
                 const type=cabinWidth.type;
+                const fatTypeMaxBariCapacity=carcassDesigner(ctw, liftInfo, constants, selectedOptions).maxBaritCapacity.fatTypeMaxBaritCapacityInKg;
+                const slimTypeMaxBariCapacity=carcassDesigner(ctw, liftInfo, constants, selectedOptions).maxBaritCapacity.slimTypeMaxBaritCapacityInKg;
+                let slimTypeKgCapacityStatus;
+                let fatTypeKgCapacityStatus;
+                const neededBarit=cabinAreaToCapacityFinder(cabinSize).neededBarit;
+                
+                if(fatTypeMaxBariCapacity>=neededBarit){
+                    fatTypeKgCapacityStatus=true;
+                }else{
+                    fatTypeKgCapacityStatus=false;
+                }
+                
+                if(slimTypeMaxBariCapacity>=neededBarit){
+                    slimTypeKgCapacityStatus=true;
+                }else{
+                    slimTypeKgCapacityStatus=false;
+                }
+
+                
                 sizes.push({ 
                     name:ctw.ctwName,
                     size: cabinSize, 
                     capacity:cabinAreaToCapacityFinder(cabinSize).cabinAreaInKg,
-                    neededBarit:cabinAreaToCapacityFinder(cabinSize).neededBarit,
+                    neededBarit,
                     depth: depth.cabinDepth,
                     cabinToWallBackSpace: depth.cabinToBackWallWs, 
                     width: cabinWidth.size, 
@@ -60,9 +79,11 @@ export default function cabinSize(ctw, liftInfo, constants, selectedOptions) {
                     consoleWidth: cabinWidth.consoleWidth,
                     type,
                     baritDetails:carcassDesigner(ctw, liftInfo, constants, selectedOptions).maxBaritCapacity,
-                    fatTypeMaxBariCapacity:carcassDesigner(ctw, liftInfo, constants, selectedOptions).maxBaritCapacity.fatTypeMaxBaritCapacity,
-                    slimTypeMaxBariCapacity:carcassDesigner(ctw, liftInfo, constants, selectedOptions).maxBaritCapacity.slimTypeMaxBaritCapacity,
-                });
+                    fatTypeMaxBariCapacity,
+                    slimTypeMaxBariCapacity,
+                    slimTypeKgCapacityStatus,
+                    fatTypeKgCapacityStatus
+                        });
                 
             });
         });

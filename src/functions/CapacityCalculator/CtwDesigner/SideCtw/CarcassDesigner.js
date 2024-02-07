@@ -9,7 +9,8 @@ export default function carcassDesigner(ctw, liftInfo, constants, selectedOption
     //1.adım: kapıdan alan kalıyor mu?
 
     //önce kapıdan alan kalıyor mu ona bakalım
-    //sonra çift sıra için kapıdan yer kalıyor mu ona bakalım
+    //sonra çift sıra için kapıdan yer kalıyor mu ona bakılıyor 
+    //ve ağırlık sistemi için kullanılabilir alanlar belirleniyor 
     const carcasslength = bringCarcassLengthAndLocation(liftInfo, constants, ctw);
     const widthRemainedAfterDoor = doorSpaceReducer(liftInfo, selectedOptions, constants).emptyWidthRemains;
     const depthRemainedAfterDoor = doorSpaceReducer(liftInfo, selectedOptions, constants).emptyDepthRemains;
@@ -57,7 +58,7 @@ export default function carcassDesigner(ctw, liftInfo, constants, selectedOption
             slimCtwType,
             emptyWidthForSlim,
             fatCtwType,
-            description: "Ağırlık Sistemi için kullanılabilir boş alanlar  "
+            description: "Barit için kullanılabilir boş alan "
         };
     }
 
@@ -80,13 +81,27 @@ export default function carcassDesigner(ctw, liftInfo, constants, selectedOption
             }
 
         }
-        if (emptyWidthForFat >= carcassWidth.double) {
-            fatCarcassWidth = carcassWidth.double;
+
+        if (emptyWidthForFat >= ctw.two_X_a) {
+
+            if (fatCtwType === "shaftLenght") {
+                fatCarcassWidth = carcassWidth.shaftLength.double;
+            }
+            if (fatCtwType === "doorLenght") {
+                fatCarcassWidth = carcassWidth.doorLength.double;
+            }
+
             fatLongDoubleRowBarit = true;
             fatDescription = "Çift Sıra Ağırlık Sistemi Kapasitesi";
 
-        } else if (emptyWidthForFat >= carcassWidth.single) {
-            fatCarcassWidth = carcassWidth.single;
+        } else if (emptyWidthForFat >= ctw.ctwA) {
+
+            if (fatCtwType === "shaftLenght") {
+                fatCarcassWidth = carcassWidth.shaftLength.single;
+            }
+            if (fatCtwType === "doorLenght") {
+                fatCarcassWidth = carcassWidth.doorLength.single;
+            }
             fatLongDoubleRowBarit = false;
             fatDescription = "Tek Sıra Ağırlık Sistemi Kapasitesi";
         } else {
@@ -98,12 +113,22 @@ export default function carcassDesigner(ctw, liftInfo, constants, selectedOption
         let slimDescription;
         let slimLongDoubleRowBarit;
 
-        if (emptyWidthForSlim >= carcassWidth.double) {
-            slimCarcassWidth = carcassWidth.double;
+        if (emptyWidthForSlim >= ctw.two_X_a) {
+
+            if (slimCtwType === "shaftLenght") {
+                slimCarcassWidth = carcassWidth.shaftLength.double;
+            } if (slimCtwType === "doorLenght") {
+                slimCarcassWidth = carcassWidth.doorLength.double;
+            }
             slimLongDoubleRowBarit = false;
             slimDescription = "Çift Sıra Ağırlık Sistemi Kapasitesi";
-        } else if (emptyWidthForSlim >= carcassWidth.single) {
-            slimCarcassWidth = carcassWidth.single;
+        } else if (emptyWidthForSlim >= ctw.ctwA) {
+            
+            if (slimCtwType === "shaftLenght") {
+                slimCarcassWidth = carcassWidth.shaftLength.single;
+            } if (slimCtwType === "doorLenght") {
+                slimCarcassWidth = carcassWidth.doorLength.single;
+            }
             slimLongDoubleRowBarit = false;
             slimDescription = "Tek Sıra Ağırlık Sistemi Kapasitesi";
         } else {
@@ -111,20 +136,20 @@ export default function carcassDesigner(ctw, liftInfo, constants, selectedOption
             slimDescription = "Barit uygun değil";
         }
 
-        let slimTypeMaxBaritCapacity = maxbaritCapacityInKg(slimLongDoubleRowBarit);
-        let fatTypeMaxBaritCapacity = maxbaritCapacityInKg(fatLongDoubleRowBarit);
+        let slimTypeMaxBaritCapacityInKg = maxbaritCapacityInKg(slimLongDoubleRowBarit);
+        let fatTypeMaxBaritCapacityInKg = maxbaritCapacityInKg(fatLongDoubleRowBarit);
 
 
         return {
             slimCarcassWidth,
             slimDescription,
             slimCtwType,
-            slimTypeMaxBaritCapacity,
+            slimTypeMaxBaritCapacityInKg,
             slimLongDoubleRowBarit,
             fatCarcassWidth,
             fatDescription,
             fatCtwType,
-            fatTypeMaxBaritCapacity,
+            fatTypeMaxBaritCapacityInKg,
             fatLongDoubleRowBarit,
         };
     }

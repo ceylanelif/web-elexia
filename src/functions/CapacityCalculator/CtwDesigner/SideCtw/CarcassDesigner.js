@@ -23,7 +23,7 @@ export default function carcassDesigner(ctw, liftInfo, constants, selectedOption
         if (widthRemainedAfterDoor >= carcassDepth.fatCtwWithPudrel) {
             isEmptySpaceForFat = true;
             isEmptySpaceForSlim = true;
-        } if (widthRemainedAfterDoor >= carcassDepth.slimCtwWithPudrel) {
+        } else if (widthRemainedAfterDoor >= carcassDepth.slimCtwWithPudrel) {
             isEmptySpaceForSlim = true;
             isEmptySpaceForFat = false;
         } else {
@@ -58,7 +58,7 @@ export default function carcassDesigner(ctw, liftInfo, constants, selectedOption
             slimCtwType,
             emptyWidthForSlim,
             fatCtwType,
-            description: "Barit için kullanılabilir boş alan "
+            description: "Ağırlık sistemi için kullanılabilir boş alan "
         };
     }
 
@@ -82,7 +82,7 @@ export default function carcassDesigner(ctw, liftInfo, constants, selectedOption
 
         }
 
-        if (emptyWidthForFat >= ctw.two_X_a) {
+        if (emptyWidthForFat >= carcassWidth.double) {
 
             if (fatCtwType === "shaftLenght") {
                 fatCarcassWidth = carcassWidth.shaftLength.double;
@@ -94,7 +94,7 @@ export default function carcassDesigner(ctw, liftInfo, constants, selectedOption
             fatLongDoubleRowBarit = true;
             fatDescription = "Çift Sıra Ağırlık Sistemi Kapasitesi";
 
-        } else if (emptyWidthForFat >= ctw.ctwA) {
+        } else if (emptyWidthForFat >= carcassWidth.single) {
 
             if (fatCtwType === "shaftLenght") {
                 fatCarcassWidth = carcassWidth.shaftLength.single;
@@ -113,7 +113,7 @@ export default function carcassDesigner(ctw, liftInfo, constants, selectedOption
         let slimDescription;
         let slimLongDoubleRowBarit;
 
-        if (emptyWidthForSlim >= ctw.two_X_a) {
+        if (emptyWidthForSlim >= carcassWidth.double) {
 
             if (slimCtwType === "shaftLenght") {
                 slimCarcassWidth = carcassWidth.shaftLength.double;
@@ -122,7 +122,7 @@ export default function carcassDesigner(ctw, liftInfo, constants, selectedOption
             }
             slimLongDoubleRowBarit = false;
             slimDescription = "Çift Sıra Ağırlık Sistemi Kapasitesi";
-        } else if (emptyWidthForSlim >= ctw.ctwA) {
+        } else if (emptyWidthForSlim >= carcassWidth.single) {
             
             if (slimCtwType === "shaftLenght") {
                 slimCarcassWidth = carcassWidth.shaftLength.single;

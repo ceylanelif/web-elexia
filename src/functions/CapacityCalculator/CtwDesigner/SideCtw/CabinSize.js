@@ -5,8 +5,8 @@ import carcassDesigner from "./CarcassDesigner";
 
 export default function cabinSize(ctw, liftInfo, constants, selectedOptions) {
     const { slimCtwWithPudrel, fatCtwWithPudrel } = carcassDepthCalculator(ctw, constants);
-   
-   
+
+
     function cabinWidthWithouthWallConsole(ctwDepthType, wallConsoleWidth) {
         const sideCtwCabinWidth =
             liftInfo.shaftWidth -
@@ -27,11 +27,11 @@ export default function cabinSize(ctw, liftInfo, constants, selectedOptions) {
             const fatCabinWidth = cabinWidthWithouthWallConsole(fatCtwWithPudrel, i);
 
             if (slimCabinWidth % 50 === 0 && slimCabinWidth >= 800) {
-                widths.push({ size: slimCabinWidth, consoleWidth: i ,type:"slim" });
+                widths.push({ size: slimCabinWidth, consoleWidth: i, type: "slim" });
             }
 
             if (fatCabinWidth % 50 === 0 && fatCabinWidth >= 800) {
-                widths.push({ size: fatCabinWidth, consoleWidth: i ,type:"fat" });
+                widths.push({ size: fatCabinWidth, consoleWidth: i, type: "fat" });
             }
         }
 
@@ -42,49 +42,63 @@ export default function cabinSize(ctw, liftInfo, constants, selectedOptions) {
         const widths = getCabinWidths();
         const sizes = [];
         const filteredDepths = sideCabinDepths(liftInfo, selectedOptions);
-        
+
 
         filteredDepths.forEach((depth) => {
             widths.forEach((cabinWidth) => {
-                const cabinSize = (depth.cabinDepth * cabinWidth.size)/1000000;
-                const type=cabinWidth.type;
-                const fatTypeMaxBariCapacity=carcassDesigner(ctw, liftInfo, constants, selectedOptions).maxBaritCapacity.fatTypeMaxBaritCapacityInKg;
-                const slimTypeMaxBariCapacity=carcassDesigner(ctw, liftInfo, constants, selectedOptions).maxBaritCapacity.slimTypeMaxBaritCapacityInKg;
+                const cabinSize = (depth.cabinDepth * cabinWidth.size) / 1000000;
+                const type = cabinWidth.type;
+                const fatTypeMaxBariCapacity = carcassDesigner(ctw, liftInfo, constants, selectedOptions).CtwTypeWidhCapacity.fat.fatTypeMaxBaritCapacityInKg;
+                const slimTypeMaxBariCapacity = carcassDesigner(ctw, liftInfo, constants, selectedOptions).CtwTypeWidhCapacity.slim.slimTypeMaxBaritCapacityInKg;
                 let slimTypeKgCapacityStatus;
                 let fatTypeKgCapacityStatus;
-                const neededBarit=cabinAreaToCapacityFinder(cabinSize).neededBarit;
-                
-                if(fatTypeMaxBariCapacity>=neededBarit){
-                    fatTypeKgCapacityStatus=true;
-                }else{
-                    fatTypeKgCapacityStatus=false;
-                }
-                
-                if(slimTypeMaxBariCapacity>=neededBarit){
-                    slimTypeKgCapacityStatus=true;
-                }else{
-                    slimTypeKgCapacityStatus=false;
+                const neededBarit = cabinAreaToCapacityFinder(cabinSize).neededBarit;
+
+                if (fatTypeMaxBariCapacity >= neededBarit) {
+                    fatTypeKgCapacityStatus = true;
+                } else {
+                    fatTypeKgCapacityStatus = false;
                 }
 
+                if (slimTypeMaxBariCapacity >= neededBarit) {
+                    slimTypeKgCapacityStatus = true;
+                } else {
+                    slimTypeKgCapacityStatus = false;
+                }
+
+                let maxBaritCapacity;
+                let kgCapacityStatus;
+                let baritDetails;
+                if (type === "fat") {
+                    baritDetails = carcassDesigner(ctw, liftInfo, constants, selectedOptions).CtwTypeWidhCapacity.fat;
+                    maxBaritCapacity = fatTypeMaxBariCapacity;
+                    kgCapacityStatus = fatTypeKgCapacityStatus;
+                } else if (type === "slim") {
+                    baritDetails = carcassDesigner(ctw, liftInfo, constants, selectedOptions).CtwTypeWidhCapacity.slim;
+                    maxBaritCapacity = slimTypeMaxBariCapacity;
+                    kgCapacityStatus = slimTypeKgCapacityStatus;
+                }
                 
-                sizes.push({ 
-                    name:ctw.ctwName,
-                    size: cabinSize, 
-                    capacity:cabinAreaToCapacityFinder(cabinSize).cabinAreaInKg,
-                    neededBarit,
-                    depth: depth.cabinDepth,
-                    cabinToWallBackSpace: depth.cabinToBackWallWs, 
-                    width: cabinWidth.size, 
-                    wallSideConsoleWidth: cabinWidth.consoleWidth,
-                    consoleWidth: cabinWidth.consoleWidth,
-                    type,
-                    baritDetails:carcassDesigner(ctw, liftInfo, constants, selectedOptions).maxBaritCapacity,
-                    fatTypeMaxBariCapacity,
-                    slimTypeMaxBariCapacity,
-                    slimTypeKgCapacityStatus,
-                    fatTypeKgCapacityStatus
-                        });
-                
+
+                sizes.push({
+                    name: ctw.ctwName,
+                    location:"side",
+                    capacity: cabinAreaToCapacityFinder(cabinSize).cabinAreaInKg,
+                    cabinWidth: cabinWidth.size,
+                    cabinDept: depth.cabinDepth,
+                    cabinArea: cabinSize,
+                    carcassDetails:{
+                        neededBarit,
+                        cabinToWallBackSpace: depth.cabinToBackWallWs,
+                        wallSideConsoleWidth: cabinWidth.consoleWidth,
+                        type,
+                        maxBaritCapacity,
+                        kgCapacityStatus,
+
+                    },
+                    baritDetails,
+                });
+
             });
         });
 

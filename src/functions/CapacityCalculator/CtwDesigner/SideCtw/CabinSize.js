@@ -48,8 +48,8 @@ export default function cabinSize(ctw, liftInfo, constants, selectedOptions) {
             widths.forEach((cabinWidth) => {
                 const cabinSize = (depth.cabinDepth * cabinWidth.size) / 1000000;
                 const type = cabinWidth.type;
-                const fatTypeMaxBariCapacity = carcassDesigner(ctw, liftInfo, constants, selectedOptions).CtwTypeWidhCapacity.fat.fatTypeMaxBaritCapacityInKg;
-                const slimTypeMaxBariCapacity = carcassDesigner(ctw, liftInfo, constants, selectedOptions).CtwTypeWidhCapacity.slim.slimTypeMaxBaritCapacityInKg;
+                const fatTypeMaxBariCapacity = carcassDesigner(ctw, liftInfo, constants, selectedOptions).CtwTypeWidhCapacity.fat.baritCapacityKg;
+                const slimTypeMaxBariCapacity = carcassDesigner(ctw, liftInfo, constants, selectedOptions).CtwTypeWidhCapacity.slim.baritCapacityKg;
                 let slimTypeKgCapacityStatus;
                 let fatTypeKgCapacityStatus;
                 const neededBarit = cabinAreaToCapacityFinder(cabinSize).neededBarit;
@@ -85,17 +85,16 @@ export default function cabinSize(ctw, liftInfo, constants, selectedOptions) {
                     location:"side",
                     capacity: cabinAreaToCapacityFinder(cabinSize).cabinAreaInKg,
                     cabinWidth: cabinWidth.size,
-                    cabinDept: depth.cabinDepth,
+                    cabinDepth: depth.cabinDepth,
                     cabinArea: cabinSize,
-                    carcassDetails:{
+                    kgCapacityStatus,
+                    details:{
                         neededBarit,
                         cabinToWallBackSpace: depth.cabinToBackWallWs,
                         wallSideConsoleWidth: cabinWidth.consoleWidth,
                         type,
                         maxBaritCapacity,
-                        kgCapacityStatus,
-
-                    },
+                                        },
                     baritDetails,
                 });
 

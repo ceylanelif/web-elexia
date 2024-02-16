@@ -17,6 +17,7 @@ export default function carcassDesigner(ctw, liftInfo, constants, selectedOption
     const depthRemainedAfterDoor = doorSpaceReducer(liftInfo, selectedOptions, constants).emptyDepthRemains;
     const carcassDepth = carcassDepthCalculator(ctw, constants);
     const carcassWidth = carcassWidths(ctw, constants);
+    
 
     function usableCarcassWidths() {
         let isEmptySpaceForSlim;
@@ -128,7 +129,10 @@ export default function carcassDesigner(ctw, liftInfo, constants, selectedOption
                 type:slimCtwType,
                 railBetween:slimRailBetween,
                 baritCapacityKg:slimTypeMaxBaritCapacityInKg,
-                longDoubleBarit:slimLongDoubleRowBarit
+                longDoubleBarit:slimLongDoubleRowBarit,
+                carcassDepthWithPudrel:carcassDepth.slimCtwWithPudrel,
+                carcassLengthDetails:carcasslength.CarcassLengthDetails,
+                carcassFrame:carcasslength.CarcassFrame
             },
             fat: {
                 carcassSystemWidth:fatCarcassSystemWidth,
@@ -137,6 +141,9 @@ export default function carcassDesigner(ctw, liftInfo, constants, selectedOption
                 railBetween: fatRailBetween,
                 baritCapacityKg: fatTypeMaxBaritCapacityInKg,
                 longDoubleBarit:fatLongDoubleRowBarit,
+                carcassDepthWithPudrel:carcassDepth.fatCtwWithPudrel,
+                carcassLengthDetails:carcasslength.CarcassLengthDetails,
+                carcassFrame:carcasslength.CarcassFrame
             }
         };
     }

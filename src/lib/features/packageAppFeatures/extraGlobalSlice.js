@@ -1,4 +1,4 @@
-import { ShaftConstantDatas } from '@/functions/CapacityCalculation/constData';
+import { ShaftConstantDatas } from '@/functions/CapacityCalculator/constData';
 import { createSlice } from '@reduxjs/toolkit';
 
 const constantData= ShaftConstantDatas;

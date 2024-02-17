@@ -7,8 +7,7 @@ export function carcassDepthCalculator(ctw, constants) {
         depthConstants.pudrelWidth;
     const noPudrelDimensions = depthConstants.ctw_B_WS +// Barit hariç arkadan ağırlıktaki diğer çalışma boşluklarının toplamı
         depthConstants.seperatorCtwWs +
-        depthConstants.seperatorWidth +
-        depthConstants.seperatorCabinWs;
+        depthConstants.seperatorWidth ;
 
     const slimCtwWithPudrel = pudrelDimensions + ctw.ctwB;
     const fatCtwWithPudrel = pudrelDimensions + ctw.two_X_b; 

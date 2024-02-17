@@ -87,6 +87,7 @@ export default function cabinSize(ctw, liftInfo, constants, selectedOptions) {
                     cabinWidth: cabinWidth.size,
                     cabinDepth: depth.cabinDepth,
                     cabinArea: cabinSize,
+                    ctwMaterial:ctw.ctwMaterial,
                     kgCapacityStatus,
                     details:{
                         neededBarit,

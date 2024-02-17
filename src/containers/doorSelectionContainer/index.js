@@ -10,7 +10,7 @@ import CabinDoorModal from '@/components/PackageLiftAppComponents/DoorSelectionC
 import { useDispatch, useSelector } from 'react-redux'
 import {  searchProducts } from '@/lib/features/packageAppFeatures/productSlice'
 import OtherLandingDoorModal from '@/components/PackageLiftAppComponents/DoorSelectionComponents/OtherLandingDoorSelection/Modal'
-import CapacityCalculator from '@/functions/CapacityCalculation/main'
+import CapacityCalculator from '@/functions/CapacityCalculator/main'
 
 export default function DoorSelectionContainer() {
 const selectedDoor = useSelector((state) => state.selectedOptions.DoorDimension);

@@ -132,7 +132,7 @@ export default function carcassDesigner(ctw, liftInfo, constants, selectedOption
                 longDoubleBarit:slimLongDoubleRowBarit,
                 carcassDepthWithPudrel:carcassDepth.slimCtwWithPudrel,
                 carcassLengthDetails:carcasslength.CarcassLengthDetails,
-                carcassFrame:carcasslength.CarcassFrame
+                carcassFrame:carcasslength.frame
             },
             fat: {
                 carcassSystemWidth:fatCarcassSystemWidth,
@@ -143,7 +143,7 @@ export default function carcassDesigner(ctw, liftInfo, constants, selectedOption
                 longDoubleBarit:fatLongDoubleRowBarit,
                 carcassDepthWithPudrel:carcassDepth.fatCtwWithPudrel,
                 carcassLengthDetails:carcasslength.CarcassLengthDetails,
-                carcassFrame:carcasslength.CarcassFrame
+                carcassFrame:carcasslength.frame
             }
         };
     }

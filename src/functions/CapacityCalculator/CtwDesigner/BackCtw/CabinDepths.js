@@ -6,35 +6,42 @@ import doorSpaceReducer from "../DoorSpaceReducer";
 export function backCabinDepths(ctw, liftInfo, constants, selectedOptions) {
 
     const carcasslength = bringCarcassLengthAndLocation(liftInfo, constants, ctw);
-    const {slimCtwNoPudrel,fatCtwNoPudrel,description} = carcassDepthCalculator(ctw, constants);
+    const { slimCtwNoPudrel, fatCtwNoPudrel, description } = carcassDepthCalculator(ctw, constants);
     const carcassWidth = carcassWidths(ctw, constants);
     const depthRemainedAfterDoor = doorSpaceReducer(liftInfo, selectedOptions, constants).emptyDepthRemains;
-    const depthConstants = constants.carcassDepth;
-   
-    const slimCabinDepth = depthRemainedAfterDoor-slimCtwNoPudrel;
-    const fatCabinDepth = depthRemainedAfterDoor-fatCtwNoPudrel;
 
-    let possibleSlimCabinDepths = []; 
+    const slimCabinDepth = depthRemainedAfterDoor - slimCtwNoPudrel;
+    const fatCabinDepth = depthRemainedAfterDoor - fatCtwNoPudrel;
+    let pudrelWsMin = constants.carcassDepth.seperatorCabinWs;
+    let possibleSlimCabinDepths = [];
     let possibleFatCabinDepths = [];
 
-    // for (let i = 0; slimCabinDepth >= 800; i++) {
-    //     const currentDepth = slimCabinDepth - (i+50) ; // Her adımda 50 azalt
-    
-    //     possibleSlimCabinDepths.push(currentDepth);
-    // }
-    
-    
-    // for (let i = fatCabinDepth; i >= 800; i++) {
-    //     const currentDepth = i + depthConstants.seperatorCabinWs;
-        
-    //     // 50'nin katı olup olmadığını kontrol et
-    //     if (currentDepth % 50 === 0) {
-    //         possibleFatCabinDepths.push(currentDepth);
-    //     }
-    // }
-    
+    // İlk döngü için işlemler
+    while (pudrelWsMin <= slimCabinDepth) {
+        let cabinDepth = slimCabinDepth - pudrelWsMin;
 
+        if (cabinDepth < 800) {
+            break; // 800'den küçükse döngüden çık
+        }
 
-return {possibleSlimCabinDepths };
+        possibleSlimCabinDepths.push({ cabinDepth, pudrelWsMin });
+        pudrelWsMin++;
+    }
+    const filteredSlimDepths = possibleSlimCabinDepths.filter((depth) => depth.cabinDepth % 50 === 0);
+
+    // İkinci döngü için işlemler
+    pudrelWsMin = constants.carcassDepth.seperatorCabinWs; // ikinci döngü için başlangıç değeri resetleniyor
+    while (pudrelWsMin <= fatCabinDepth) {
+        let cabinDepth = fatCabinDepth - pudrelWsMin;
+
+        if (cabinDepth < 800) {
+            break; // 800'den küçükse döngüden çık
+        }
+
+        possibleFatCabinDepths.push({ cabinDepth, pudrelWsMin });
+        pudrelWsMin++;
+    }
+    const filteredFatDepths = possibleFatCabinDepths.filter((depth) => depth.cabinDepth % 50 === 0);
+
+    return { filteredSlimDepths, filteredFatDepths };
 }
-

@@ -6,10 +6,12 @@ export const backCabinWidths = (liftInfo, constants) => {
 
   for (let i = widthConstants.railWallConsoleMin; i <= widthConstants.railWallConsoleMax; i ++) {
     const currentWidth = width - i;
+    const consoleWidth=i
     // Sadece 50'nin katları olan genişlik değerlerini ekleyin
     if (currentWidth % 50 === 0) {
-      cabinWidths.push(currentWidth);
+      cabinWidths.push({currentWidth,consoleWidth} );
     }
+    
   }
   return {cabinWidths};
 }

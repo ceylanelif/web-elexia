@@ -9,10 +9,9 @@ export function backCabinDepths(ctw, liftInfo, constants, selectedOptions) {
     const slimCabinDepth = depthRemainedAfterDoor - slimCtwNoPudrel;
     const fatCabinDepth = depthRemainedAfterDoor - fatCtwNoPudrel;
     let seperatorWsMin = constants.carcassDepth.seperatorCabinWs;
-    let possibleSlimCabinDepths = [];
-    let possibleFatCabinDepths = [];
+    let possibleCabinDepths = [];
 
-    // İlk döngü için işlemler
+    // İnce kabin derinliklerini hesapla
     while (seperatorWsMin <= slimCabinDepth) {
         let cabinDepth = slimCabinDepth - seperatorWsMin;
 
@@ -20,12 +19,13 @@ export function backCabinDepths(ctw, liftInfo, constants, selectedOptions) {
             break; // 800'den küçükse döngüden çık
         }
 
-        possibleSlimCabinDepths.push({ cabinDepth, seperatorWsMin });
+        if (cabinDepth % 50 === 0) {
+            possibleCabinDepths.push({ cabinDepth, seperatorWsMin ,type: "slim"});
+        }
         seperatorWsMin++;
     }
-    const filteredSlimDepths = possibleSlimCabinDepths.filter((depth) => depth.cabinDepth % 50 === 0);
 
-    // İkinci döngü için işlemler
+    // Kalın kabin derinliklerini hesapla
     seperatorWsMin = constants.carcassDepth.seperatorCabinWs; // ikinci döngü için başlangıç değeri resetleniyor
     while (seperatorWsMin <= fatCabinDepth) {
         let cabinDepth = fatCabinDepth - seperatorWsMin;
@@ -34,10 +34,11 @@ export function backCabinDepths(ctw, liftInfo, constants, selectedOptions) {
             break; // 800'den küçükse döngüden çık
         }
 
-        possibleFatCabinDepths.push({ cabinDepth, seperatorWsMin });
+        if (cabinDepth % 50 === 0) {
+            possibleCabinDepths.push({ cabinDepth, seperatorWsMin ,type: "fat"});
+        }
         seperatorWsMin++;
     }
-    const filteredFatDepths = possibleFatCabinDepths.filter((depth) => depth.cabinDepth % 50 === 0);
 
-    return { filteredSlimDepths, filteredFatDepths };
+    return possibleCabinDepths;
 }

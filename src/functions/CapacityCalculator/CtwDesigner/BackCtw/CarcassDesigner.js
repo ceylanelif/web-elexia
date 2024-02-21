@@ -15,6 +15,9 @@ export default function carcassDesigner(ctw, liftInfo, constants, selectedOption
 
     // Kabin boyutlarını depolamak için bir dizi oluşturalım
     const cabinSizes = [];
+    let carcassSize;
+    let carcassFrame=carcassLength.frame;
+
 
     // Her bir kabin genişliği için
     for (const widthObj of cabinWidths) {
@@ -22,26 +25,16 @@ export default function carcassDesigner(ctw, liftInfo, constants, selectedOption
         // Her bir kabin derinliği ile çarpıp kabin boyutlarını hesaplayalım
         for (const depthObj of cabinDepths) {
             const depth = depthObj.cabinDepth;
-            let carcassSize;
-            let carcassLengthDetails;
 
             if (depthObj.type === "slim") {
                 carcassSize=carcassDepth.slimCtwNoPudrel
-                carcassLengthDetails=carcassLength
+
                }else if (depthObj.type === "fat") {
                 carcassSize=carcassDepth.fatCtwNoPudrel
             
             }
 
-
-
-
-
-
-
-
-
-
+          
 
             const size = {
                 ctw: ctw.ctwName,
@@ -55,9 +48,10 @@ export default function carcassDesigner(ctw, liftInfo, constants, selectedOption
                     railWallConsoleWidth:widthObj.consoleWidth,
                     seperatorWS:depthObj.seperatorWsMin,
                 },
+                carcassFrame,
                 carcassLengthDetails:carcassLength,
                 carcassWidthDetails:carcassWidth,
-                carcassDepthDetails:carcassDepth,
+                carcassDepthDetails:carcassSize,
 
             };
             // Hesaplanan boyutları diziye ekleyelim

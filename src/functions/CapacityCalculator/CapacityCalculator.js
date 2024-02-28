@@ -1,19 +1,20 @@
-
-import { backCabinDepths } from "./CtwDesigner/BackCtw/CabinDepths";
-import { backCabinWidths } from "./CtwDesigner/BackCtw/CabinWidths";
-import carcassDesigner from "./CtwDesigner/BackCtw/CarcassDesigner";
-import SideCabinSizeFilterer from "./CtwDesigner/SideCtw/CabinSizeFilterer";
-
+import backCabinSizeFilterer from "./CtwDesigner/BackCtw/CabinSizeFilterer";
 
 export default function CapacityCalculator(ctws, liftInfo, constants, selectedOptions) {
-//  const sideCabinSizes = SideCabinSizeFilterer(ctws, liftInfo, constants, selectedOptions);
- const result=[]
+    const filteredSizes = [];
 
-ctws.map((ctw) => {
-const backctwsizes=carcassDesigner(ctw, liftInfo, constants, selectedOptions);
-  result.push(backctwsizes);
-});
+    const uniqueSizes = new Set(); // Benzersiz boyutları saklamak için bir Set oluşturuyoruz
 
+    ctws.forEach((ctw) => {
+        const backctwsizes = backCabinSizeFilterer(ctw, liftInfo, constants, selectedOptions);
+        backctwsizes.forEach((size) => {
+            // Eğer boyutun genişliği ve derinliği benzersizse ve ctw "MRL96" ise ekle
+            if (!uniqueSizes.has(`${size.width}-${size.depth}`) ) {
+                filteredSizes.push(size);
+                uniqueSizes.add(`${size.width}-${size.depth}`);
+            }
+        });
+    });
 
-  return { kabinolculeri:result};
+    return { kabinolculeri: filteredSizes };
 }

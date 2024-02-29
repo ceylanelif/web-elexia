@@ -6,12 +6,14 @@ export default function backCabinSizeFilterer(ctw, liftInfo, constants, selected
     const filteredSizes=[];
 
     backctwsizes.map((backctwsize) => {
-        if(backctwsize.neededBarit<=backctwsize.carcassLengthDetails.CarcassLengthDetails.singleKg &&
-            backctwsize.width>=backctwsize.carcassWidthDetails.single
+        // if( backctwsize.neededBarit<=backctwsize.carcassLengthDetails.CarcassLengthDetails.singleKg &&
+        //     backctwsize.width>=backctwsize.carcassWidthDetails.single
             
             
-            ){
-        filteredSizes.push(backctwsize);}});
+        //     ){
+        filteredSizes.push(backctwsize)
+        //;}
+    });
 
    return filteredSizes; 
 }

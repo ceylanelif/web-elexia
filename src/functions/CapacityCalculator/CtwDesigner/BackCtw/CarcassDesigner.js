@@ -16,7 +16,8 @@ export default function carcassDesigner(ctw, liftInfo, constants, selectedOption
     const cabinSizes = [];
     let carcassSize;
     let carcassFrame=carcassLength.frame;
-
+    let carcassBaritCapacity;
+    let carcassCapacityStatus;
     // Her bir kabin genişliği için
     for (const widthObj of cabinWidths) {
         const width = widthObj.cabinWidth;
@@ -26,11 +27,14 @@ export default function carcassDesigner(ctw, liftInfo, constants, selectedOption
 
             if (depthObj.type === "slim") {
                 carcassSize=carcassDepth.slimCtwNoPudrel
-
+                carcassBaritCapacity=carcassLength.CarcassLengthDetails.singleKg
                }else if (depthObj.type === "fat") {
                 carcassSize=carcassDepth.fatCtwNoPudrel
-            
+                carcassBaritCapacity=carcassLength.CarcassLengthDetails.doubleKg
             }
+            if (carcassBaritCapacity>=cabinAreaToCapacityFinder(width * depth /1000000).neededBarit){
+                carcassCapacityStatus=true}else{carcassCapacityStatus=false}
+
 
             const size = {
                 ctw: ctw.ctwName,
@@ -48,6 +52,8 @@ export default function carcassDesigner(ctw, liftInfo, constants, selectedOption
                 carcassLengthDetails:carcassLength,
                 carcassWidthDetails:carcassWidth,
                 carcassDepthDetails:carcassSize,
+                carcassBaritCapacity,
+                carcassCapacityStatus
             };
             // Hesaplanan boyutları diziye ekleyelim
             cabinSizes.push(size);

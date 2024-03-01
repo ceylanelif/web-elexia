@@ -15,9 +15,11 @@ export default function carcassDesigner(ctw, liftInfo, constants, selectedOption
     // Kabin boyutlarını depolamak için bir dizi oluşturalım
     const cabinSizes = [];
     let carcassSize;
-    let carcassFrame=carcassLength.frame;
+    let carcassFrame = carcassLength.frame;
     let carcassBaritCapacity;
     let carcassCapacityStatus;
+    let ctwWidthStatus;
+    let ctwWidthType;
     // Her bir kabin genişliği için
     for (const widthObj of cabinWidths) {
         const width = widthObj.cabinWidth;
@@ -25,35 +27,59 @@ export default function carcassDesigner(ctw, liftInfo, constants, selectedOption
         for (const depthObj of cabinDepths) {
             const depth = depthObj.cabinDepth;
 
+            if (liftInfo.shaftWidth >= carcassWidth.doubleSided) {
+                ctwWidthStatus = true
+                ctwWidthType = "doubleSided"
+            } else if (liftInfo.shaftWidth >= carcassWidth.singleSided) {
+                ctwWidthStatus = true
+                ctwWidthType = "singleSided"
+            } else { ctwWidthStatus = false }
+            
             if (depthObj.type === "slim") {
-                carcassSize=carcassDepth.slimCtwNoPudrel
-                carcassBaritCapacity=carcassLength.CarcassLengthDetails.singleKg
-               }else if (depthObj.type === "fat") {
-                carcassSize=carcassDepth.fatCtwNoPudrel
-                carcassBaritCapacity=carcassLength.CarcassLengthDetails.doubleKg
-            }
-            if (carcassBaritCapacity>=cabinAreaToCapacityFinder(width * depth /1000000).neededBarit){
-                carcassCapacityStatus=true}else{carcassCapacityStatus=false}
+                carcassSize = carcassDepth.slimCtwNoPudrel
 
+                if (ctwWidthType === "singleSided") {
+                    carcassBaritCapacity = carcassLength.CarcassLengthDetails.singleKg
+                }
+                else if (ctwWidthType === "doubleSided") {
+                    carcassBaritCapacity = carcassLength.CarcassLengthDetails.doubleKg
+                }else {carcassBaritCapacity = 0}
+
+            } else if (depthObj.type === "fat") {
+                carcassSize = carcassDepth.fatCtwNoPudrel
+                if (ctwWidthType === "singleSided") {
+                    carcassBaritCapacity = carcassLength.CarcassLengthDetails.doubleKg
+                }
+                else if (ctwWidthType === "doubleSided") {
+                    carcassBaritCapacity = carcassLength.CarcassLengthDetails.doubleKg * 2
+                }else {carcassBaritCapacity = 0}
+
+            }
+
+            if (carcassBaritCapacity >= cabinAreaToCapacityFinder(width * depth / 1000000).neededBarit) {
+                carcassCapacityStatus = true
+            } else { carcassCapacityStatus = false }
 
             const size = {
                 ctw: ctw.ctwName,
                 width: width,
                 depth: depth,
                 type: depthObj.type,
-                size: width * depth /1000000,
-                capacity:cabinAreaToCapacityFinder(width * depth /1000000).cabinAreaInKg,
-                neededBarit:cabinAreaToCapacityFinder(width * depth /1000000).neededBarit,
+                size: width * depth / 1000000,
+                capacity: cabinAreaToCapacityFinder(width * depth / 1000000).cabinAreaInKg,
+                neededBarit: cabinAreaToCapacityFinder(width * depth / 1000000).neededBarit,
                 otherMeasurements: {
-                    railWallConsoleWidth:widthObj.consoleWidth,
-                    seperatorWS:depthObj.seperatorWsMin,
+                    railWallConsoleWidth: widthObj.consoleWidth,
+                    seperatorWS: depthObj.seperatorWsMin,
                 },
                 carcassFrame,
-                carcassLengthDetails:carcassLength,
-                carcassWidthDetails:carcassWidth,
-                carcassDepthDetails:carcassSize,
+                carcassLengthDetails: carcassLength,
+                carcassWidthDetails: carcassWidth,
+                carcassDepthDetails: carcassSize,
                 carcassBaritCapacity,
-                carcassCapacityStatus
+                carcassCapacityStatus,
+                ctwWidthStatus,
+                ctwWidthType,
             };
             // Hesaplanan boyutları diziye ekleyelim
             cabinSizes.push(size);

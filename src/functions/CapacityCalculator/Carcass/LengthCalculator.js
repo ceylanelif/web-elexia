@@ -44,7 +44,8 @@ export function carcassLengths(ctw,liftInfo, constants) {
     
     const MrCarcass = {
         description:"Projenin Pit ve Oh değerlendirilerek ,Sorgusu yapılan barit türünden kaç adet alabileceği, bunun kg karşılığını gösterir.",
-        length: MrCarcassLength,
+        emptyLength: MrCarcassLength,
+        fullCarcassLength:MrCarcassLength+constantData.downside+ constantData.ctwWs+ constantData.upside+ constantData.pulley+ constantData.pulleyProtection,
         piece: Math.floor(MrCarcassLength / ctw.ctwC),
         doublePiece: Math.floor(MrCarcassLength / ctw.ctwC) * 2,
         singleKg: Math.floor((MrCarcassLength / ctw.ctwC) * ctw.ctwKg),
@@ -53,7 +54,8 @@ export function carcassLengths(ctw,liftInfo, constants) {
 
     const MrlBeam = {
         description:"Projenin Pit ve Oh değerlendirilerek ,Sorgusu yapılan barit türünden kaç adet alabileceği, bunun kg karşılığını gösterir.",
-        length: MrlBeamLength,
+        emptyLength: MrlBeamLength,
+        fullCarcassLength:MrlBeamLength+constantData.downside+ constantData.ctwWs+ constantData.upside+ constantData.pulley+ constantData.pulleyProtection,
         piece: Math.floor(MrlBeamLength / ctw.ctwC),
         doublePiece: Math.floor(MrCarcassLength / ctw.ctwC) * 2,
         singleKg: Math.floor((MrlBeamLength / ctw.ctwC) * ctw.ctwKg),
@@ -62,7 +64,8 @@ export function carcassLengths(ctw,liftInfo, constants) {
 
     const MrlRailBase = {
         description:"Projenin Pit ve Oh değerlendirilerek ,Sorgusu yapılan barit türünden kaç adet alabileceği, bunun kg karşılığını gösterir.",
-        length: MrlRailBaseLength,
+        emptyLength: MrlRailBaseLength,
+        fullCarcassLength:MrlRailBaseLength+constantData.downside+ constantData.ctwWs+ constantData.upside+ constantData.pulley+ constantData.pulleyProtection,
         piece: Math.floor(MrlRailBaseLength / ctw.ctwC),
         doublePiece: Math.floor(MrCarcassLength / ctw.ctwC) * 2,
         singleKg: Math.floor((MrlRailBaseLength / ctw.ctwC) * ctw.ctwKg),

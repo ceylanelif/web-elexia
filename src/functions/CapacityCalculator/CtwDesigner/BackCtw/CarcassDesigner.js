@@ -2,6 +2,7 @@ import { bringCarcassLengthAndLocation } from "../../Carcass/CtwLocationDetermin
 import { carcassDepthCalculator } from "../../Carcass/DepthCalculator";
 import { carcassWidths } from "../../Carcass/WidthCalculator";
 import { cabinAreaToCapacityFinder } from "../CabinAreaToCapacityFinder";
+import railBetweenFinder from "../RailBetweenFinder";
 import { backCabinDepths } from "./CabinDepths";
 import { backCabinWidths } from "./CabinWidths";
 
@@ -20,6 +21,8 @@ export default function carcassDesigner(ctw, liftInfo, constants, selectedOption
     let carcassCapacityStatus;
     let ctwWidthStatus;
     let ctwWidthType;
+    let railBetweenProdcut;
+    let railBetween;
     // Her bir kabin genişliği için
     for (const widthObj of cabinWidths) {
         const width = widthObj.cabinWidth;
@@ -40,18 +43,26 @@ export default function carcassDesigner(ctw, liftInfo, constants, selectedOption
 
                 if (ctwWidthType === "singleSided") {
                     carcassBaritCapacity = carcassLength.CarcassLengthDetails.singleKg
+                    railBetweenProdcut=railBetweenFinder(ctw.ctwA)
+                    railBetween=ctw.ctwA+100
                 }
                 else if (ctwWidthType === "doubleSided") {
                     carcassBaritCapacity = carcassLength.CarcassLengthDetails.doubleKg
+                    railBetweenProdcut=railBetweenFinder(ctw.two_X_a)
+                    railBetween=ctw.two_X_a+100
                 }else {carcassBaritCapacity = 0}
 
             } else if (depthObj.type === "fat") {
                 carcassSize = carcassDepth.fatCtwNoPudrel
                 if (ctwWidthType === "singleSided") {
                     carcassBaritCapacity = carcassLength.CarcassLengthDetails.doubleKg
+                    railBetweenProdcut=railBetweenFinder(ctw.ctwA)
+                    railBetween=ctw.ctwA+100
                 }
                 else if (ctwWidthType === "doubleSided") {
                     carcassBaritCapacity = carcassLength.CarcassLengthDetails.doubleKg * 2
+                    railBetweenProdcut=railBetweenFinder(ctw.two_X_a)
+                    railBetween=ctw.two_X_a+100
                 }else {carcassBaritCapacity = 0}
 
             }
@@ -61,6 +72,7 @@ export default function carcassDesigner(ctw, liftInfo, constants, selectedOption
             } else { carcassCapacityStatus = false }
 
             const size = {
+                location: "back",
                 ctw: ctw.ctwName,
                 width: width,
                 depth: depth,
@@ -80,6 +92,8 @@ export default function carcassDesigner(ctw, liftInfo, constants, selectedOption
                 carcassCapacityStatus,
                 ctwWidthStatus,
                 ctwWidthType,
+                railBetweenProdcut,
+                railBetween
             };
             // Hesaplanan boyutları diziye ekleyelim
             cabinSizes.push(size);

@@ -81,8 +81,8 @@ export default function cabinSize(ctw, liftInfo, constants, selectedOptions) {
                 
 
                 sizes.push({
-                    name: ctw.ctwName,
                     location:"side",
+                    name: ctw.ctwName,
                     capacity: cabinAreaToCapacityFinder(cabinSize).cabinAreaInKg,
                     cabinWidth: cabinWidth.size,
                     cabinDepth: depth.cabinDepth,

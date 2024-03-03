@@ -24,5 +24,5 @@ export default function CapacityCalculator(ctws, liftInfo, constants, selectedOp
         filteredSizes.push(...sideCtwSizes);
     
     }
-    return { kabinolculeri: filteredSizes };
+    return { filteredSizes };
 }

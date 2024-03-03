@@ -4,11 +4,12 @@ import LiftSummaryTable from '@/components/LiftSummaryTable'
 import React from 'react'
 import styles from './styles.module.css'
 import ElexiaGreenButton from '@/components/Button/ElexiaGreenButton'
+import Link from 'next/link'
 
 
 export default function PackageAppContainer() {
 
-const nextPage=() => window.location.href = "/docs/doorSelection";
+
   return (
     <div className={styles.packageAppContainer}>
       <div className={styles.tableWrapper}>
@@ -16,8 +17,9 @@ const nextPage=() => window.location.href = "/docs/doorSelection";
         <LiftInfo />
       </div>
       <div className={styles.buttonWrapper}>
-      <ElexiaGreenButton onClick={nextPage} buttonName="Next" className={"nextButton"} />
-
+        <Link href="/docs/doorSelection">
+      <ElexiaGreenButton buttonName="Next" className={"nextButton"} />
+      </Link>
       </div>
     </div>
   )

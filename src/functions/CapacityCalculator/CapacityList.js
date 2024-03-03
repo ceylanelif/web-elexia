@@ -1,21 +1,28 @@
-import React from 'react'
+import React from 'react';
 import { Dropdown } from 'semantic-ui-react';
+import CapacityCalculator from './CapacityCalculator';
+import { setCapacity } from '@/lib/features/packageAppFeatures/selectedOptionsSlice';
+import { useDispatch } from 'react-redux';
 
-export default function CapacityList() {
+export default function CapacityList(ctws, liftInfo, constants, selectedOptions) {
+
+    const capacitCalculator = CapacityCalculator(ctws, liftInfo, constants, selectedOptions).filteredSizes;
+    const dispatch = useDispatch();
+
 
     const handleDropdownChange = (event, data) => {
-        dispatch(setSelectedCapacity(data.value));
+        dispatch(setCapacity(data.value));
     };
-    // const friendOptions = ctwler.map(item => ({
-    //     key: item,
-    //     text: `${item} Kg`, // Düzgün bir string birleştirme yapısı kullanılmalı
-    //     value: item,
-    // }));
-        const friendOptions = {
-        key: "item1",
-        text: ` Kg`, // Düzgün bir string birleştirme yapısı kullanılmalı
-        value: "item",
-    };
+
+    // Filtrelenmiş ve tekil kapasite seçeneklerini oluştur
+    const uniqueCapacities = [...new Set(capacitCalculator.map(item => item.capacity))];
+    uniqueCapacities.sort((a, b) => a - b);
+    const friendOptions = uniqueCapacities.map(capacity => ({
+        key: capacity,
+        text: capacity + " kg",
+        value: capacity
+    }));
+
     return (
         <div>
             <Dropdown

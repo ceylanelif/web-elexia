@@ -11,9 +11,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import {  searchProducts } from '@/lib/features/packageAppFeatures/productSlice'
 import OtherLandingDoorModal from '@/components/PackageLiftAppComponents/DoorSelectionComponents/OtherLandingDoorSelection/Modal'
 import CapacityCalculator from '@/functions/CapacityCalculator/main'
+import CapacityList from '@/functions/CapacityCalculator/CapacityList'
 
 export default function DoorSelectionContainer() {
 const selectedDoor = useSelector((state) => state.selectedOptions.DoorDimension);
+const selectedOptions = useSelector((state) => state.selectedOptions);
 const otherLandingDoor = useSelector((state) => state.extraGlobal.otherLandingDoor);
 
 const dispatch = useDispatch(); 

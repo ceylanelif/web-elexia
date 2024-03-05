@@ -1,8 +1,8 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
-import CapacityList from './CapacityList';
 import CapacityCalculator from './CapacityCalculator';
 import CabinSizeList from '@/components/PackageLiftAppComponents/DoorSelectionComponents/CabinSizeSelection/Dropdown';
+import CapacityList from '@/components/PackageLiftAppComponents/DoorSelectionComponents/CapacitySelection/Dropdown';
 
 export default function Capacity() {
   const liftInfo = useSelector((state) => state.lift);

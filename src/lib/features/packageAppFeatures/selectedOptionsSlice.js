@@ -6,7 +6,7 @@ const initialState = {
   CabinDoor: {amount:1,cabinDoor:null},
   LandingDoor: {amount:null,landingDoor:null},
   OtherLandingDoor: {amount:null,otherLandingDoor:null},
-  CabinSize: null,
+  CabinSize: {width:null,depth:null},
   Motor: null,
   CommandBox: null,
   Cop: null,
@@ -44,8 +44,11 @@ const selectedOptionsSlice = createSlice({
     setOtherLandingAmount: (state, action) => {
       state.OtherLandingDoor.amount = action.payload;
     },
-    setCabinSize: (state, action) => {
-      state.CabinSize = action.payload;
+    setCabinWidth: (state, action) => {
+      state.CabinSize.width = action.payload;
+    },
+    setCabinDepth: (state, action) => {
+      state.CabinSize.depth = action.payload;
     },
     setMotor: (state, action) => {
       state.Motor = action.payload;
@@ -81,7 +84,8 @@ export const {
   setOtherLandingAmount,
   setCabinDoorAmount,
   setCabinDoor,
-  setCabinSize,
+  setCabinWidth,
+  setCabinDepth,
   setMotor,
   setCommanBox,
   setCop,

@@ -2,13 +2,9 @@ import React from 'react';
 import { Dropdown } from 'semantic-ui-react';
 import CapacityCalculator from './CapacityCalculator';
 import { setCapacity } from '@/lib/features/packageAppFeatures/selectedOptionsSlice';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-export default function CapacityList() {
-    const liftInfo = useSelector((state) => state.lift);
-    const ctws = useSelector((state) => state.ctw.ctwList);
-    const selectedOptions = useSelector((state) => state.selectedOptions);
-    const constants = useSelector((state) => state.extraGlobal.constantData);
+export default function CapacityList(ctws, liftInfo, constants, selectedOptions) {
 
 
     const capacitCalculator = CapacityCalculator(ctws, liftInfo, constants, selectedOptions).filteredSizes;
@@ -37,8 +33,6 @@ export default function CapacityList() {
                 options={friendOptions}
                 onChange={handleDropdownChange}
             />
-
-        {selectedOptions.Capacity&&<CapacityList/>}
 
         </div>
     );

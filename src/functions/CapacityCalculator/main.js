@@ -2,6 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import CapacityList from './CapacityList';
 import CapacityCalculator from './CapacityCalculator';
+import CabinSizeList from '@/components/PackageLiftAppComponents/DoorSelectionComponents/CabinSizeSelection/Dropdown';
 
 export default function Capacity() {
   const liftInfo = useSelector((state) => state.lift);
@@ -19,11 +20,16 @@ export default function Capacity() {
     contentToDisplay = <div>Lütfen Kapı Seçimi yapınız!</div>;
   }
 
- 
+  let contentToDisplay2; // İçeriği göstermek için değişken
+if (selectedOptions.Capacity) {
+  contentToDisplay2 = CabinSizeList(ctws, liftInfo, constants, selectedOptions)
+}else {
+  contentToDisplay2 = <div>Lütfen Kapasite Seçimi yapınız!</div>;}
 
   return (
     <div>
       {contentToDisplay}
+      { contentToDisplay2}
     </div>)
 }
 

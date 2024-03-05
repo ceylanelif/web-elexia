@@ -4,14 +4,12 @@ import React, { useEffect } from 'react'
 import styles from './styles.module.css'
 import LiftSummaryTable from '@/components/LiftSummaryTable'
 import PossibleDoorOptions from '@/components/PackageLiftAppComponents/DoorSelectionComponents/PossibleDoorOptions/PossibleDoorOptions'
-import notFound from '@/app/not-found'
 import LandingDoorModal from '@/components/PackageLiftAppComponents/DoorSelectionComponents/LandingDoorSelection/Modal'
 import CabinDoorModal from '@/components/PackageLiftAppComponents/DoorSelectionComponents/CabinDoorSelection/Modal'
 import { useDispatch, useSelector } from 'react-redux'
 import {  searchProducts } from '@/lib/features/packageAppFeatures/productSlice'
 import OtherLandingDoorModal from '@/components/PackageLiftAppComponents/DoorSelectionComponents/OtherLandingDoorSelection/Modal'
 import CapacityCalculator from '@/functions/CapacityCalculator/main'
-import CapacityList from '@/functions/CapacityCalculator/CapacityList'
 
 export default function DoorSelectionContainer() {
 const selectedDoor = useSelector((state) => state.selectedOptions.DoorDimension);
@@ -26,7 +24,7 @@ useEffect(() => {
         opening:selectedDoor.opening, 
         width: selectedDoor.width
      }))}
-    }, [dispatch,selectedDoor]);
+    }, [dispatch,selectedDoor,selectedOptions]);
   
 const nextPage=() => window.location.href = "/docs/";
 const backPage=() => window.location.href = "/docs/packageApp";

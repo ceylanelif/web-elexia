@@ -7,9 +7,10 @@ import PossibleDoorOptions from '@/components/PackageLiftAppComponents/DoorSelec
 import LandingDoorModal from '@/components/PackageLiftAppComponents/DoorSelectionComponents/LandingDoorSelection/Modal'
 import CabinDoorModal from '@/components/PackageLiftAppComponents/DoorSelectionComponents/CabinDoorSelection/Modal'
 import { useDispatch, useSelector } from 'react-redux'
-import {  searchProducts } from '@/lib/features/packageAppFeatures/productSlice'
+import {  fetchProducts, searchProducts } from '@/lib/features/packageAppFeatures/productSlice'
 import OtherLandingDoorModal from '@/components/PackageLiftAppComponents/DoorSelectionComponents/OtherLandingDoorSelection/Modal'
 import CapacityCalculator from '@/functions/CapacityCalculator/main'
+import Link from 'next/link'
 
 export default function DoorSelectionContainer() {
 const selectedDoor = useSelector((state) => state.selectedOptions.DoorDimension);
@@ -24,6 +25,7 @@ useEffect(() => {
         opening:selectedDoor.opening, 
         width: selectedDoor.width
      }))}
+     dispatch(fetchProducts());
     }, [dispatch,selectedDoor,selectedOptions]);
   
 const nextPage=() => window.location.href = "/docs/";
@@ -42,9 +44,13 @@ const backPage=() => window.location.href = "/docs/packageApp";
         <CapacityCalculator/>
         </div>
         </div>
-        <div className={styles.buttonWrapper}>
-            <ElexiaGreenButton onClick={nextPage} className={styles.nextButton} buttonName={"Next"}/>
-            <ElexiaGreenButton onClick={backPage} className={styles.backButton} buttonName={"Back"}/>
+        <div className={styles.buttonWrapper}> 
+            <Link href="/docs/motorSelection">
+            <ElexiaGreenButton  className={styles.nextButton} buttonName={"Next"}/>
+            </Link>
+            <ElexiaGreenButton className={styles.backButton} buttonName={"Back"}/>
+            
+           
         </div>
     </div>
   )

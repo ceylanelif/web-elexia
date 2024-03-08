@@ -7,6 +7,7 @@ const initialState = {
   LandingDoor: {amount:null,landingDoor:null},
   OtherLandingDoor: {amount:null,otherLandingDoor:null},
   CabinSize: {width:null,depth:null},
+  Ctw: null,
   Motor: null,
   CommandBox: null,
   Cop: null,
@@ -71,6 +72,10 @@ const selectedOptionsSlice = createSlice({
     setCeiling: (state, action) => {
       state.Ceiling = action.payload;
     },
+    setCtw: (state, action) => {
+      state.Ctw = action.payload;
+    },
+    
   },
 });
 
@@ -92,6 +97,7 @@ export const {
   setLop,
   setCabin,
   setCeiling,
-  setFloor
+  setFloor,
+  setCtw
 } = selectedOptionsSlice.actions;
 export default selectedOptionsSlice.reducer;

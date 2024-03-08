@@ -2,7 +2,7 @@ import CapacityCalculator from "@/functions/CapacityCalculator/CapacityCalculato
 import { useDispatch } from "react-redux";
 import { Dropdown } from "semantic-ui-react";
 import styles from './styles.module.css';
-import { setCabinDepth, setCabinWidth } from "@/lib/features/packageAppFeatures/selectedOptionsSlice";
+import { setCabinDepth, setCabinWidth, setCtw } from "@/lib/features/packageAppFeatures/selectedOptionsSlice";
 
 export default function CabinSizeList(ctws, liftInfo, constants, selectedOptions) {
     const capacitCalculator = CapacityCalculator(ctws, liftInfo, constants, selectedOptions).filteredSizes;
@@ -11,6 +11,7 @@ export default function CabinSizeList(ctws, liftInfo, constants, selectedOptions
     const handleDropdownChange = (event, data) => {
         dispatch(setCabinWidth(data.value.width));
         dispatch(setCabinDepth(data.value.depth));
+        dispatch(setCtw(data.value));
     };
     
     // Filtrelenmiş ve tekil kapasite seçeneklerini oluştur
@@ -19,7 +20,7 @@ export default function CabinSizeList(ctws, liftInfo, constants, selectedOptions
 
     const friendOptions = uniqueCapacities.map(capacity => ({
         key: capacity,
-        text: `W ${capacity.width} mm x D ${capacity.depth} mm`,
+        text: `W ${capacity.width} mm x D ${capacity.depth} mm Ctw Location: ${capacity.location}`,
         value: capacity
     }));
 

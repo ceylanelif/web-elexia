@@ -5,8 +5,7 @@ import carcassDesigner from "./CarcassDesigner";
 
 export default function cabinSize(ctw, liftInfo, constants, selectedOptions) {
     const { slimCtwWithPudrel, fatCtwWithPudrel } = carcassDepthCalculator(ctw, constants);
-
-
+    const designer = carcassDesigner(ctw, liftInfo, constants, selectedOptions);
     function cabinWidthWithouthWallConsole(ctwDepthType, wallConsoleWidth) {
         const sideCtwCabinWidth =
             liftInfo.shaftWidth -
@@ -69,34 +68,42 @@ export default function cabinSize(ctw, liftInfo, constants, selectedOptions) {
                 let maxBaritCapacity;
                 let kgCapacityStatus;
                 let baritDetails;
+                let emptySpaceForCtwSystem;
+                let carcassWidthWithWS;
                 if (type === "fat") {
                     baritDetails = carcassDesigner(ctw, liftInfo, constants, selectedOptions).CtwTypeWidhCapacity.fat;
                     maxBaritCapacity = fatTypeMaxBariCapacity;
                     kgCapacityStatus = fatTypeKgCapacityStatus;
+                    emptySpaceForCtwSystem=designer.emptySpacesForBarit.emptyWidthForFat
+                    carcassWidthWithWS=designer.CtwTypeWidhCapacity.fat.carcassSystemWidth
                 } else if (type === "slim") {
                     baritDetails = carcassDesigner(ctw, liftInfo, constants, selectedOptions).CtwTypeWidhCapacity.slim;
                     maxBaritCapacity = slimTypeMaxBariCapacity;
                     kgCapacityStatus = slimTypeKgCapacityStatus;
+                    emptySpaceForCtwSystem=designer.emptySpacesForBarit.emptyWidthForSlim
+                    carcassWidthWithWS=designer.CtwTypeWidhCapacity.slim.carcassSystemWidth
                 }
-                
+
 
                 sizes.push({
-                    location:"side",
-                    name: ctw.ctwName,
-                    capacity: cabinAreaToCapacityFinder(cabinSize).cabinAreaInKg,
+                    location: "side",
+                    ctw: ctw.ctwName,
                     width: cabinWidth.size,
                     depth: depth.cabinDepth,
+                    type,
+                    capacity: cabinAreaToCapacityFinder(cabinSize).cabinAreaInKg,
                     cabinArea: cabinSize,
-                    ctwMaterial:ctw.ctwMaterial,
                     kgCapacityStatus,
-                    details:{
+                    details: {
                         neededBarit,
                         cabinToWallBackSpace: depth.cabinToBackWallWs,
                         wallSideConsoleWidth: cabinWidth.consoleWidth,
-                        type,
                         maxBaritCapacity,
-                                        },
+                        emptySpaceForCtwSystem,
+                        carcassWidthWithWS
+                    },
                     baritDetails,
+                    
                 });
 
             });

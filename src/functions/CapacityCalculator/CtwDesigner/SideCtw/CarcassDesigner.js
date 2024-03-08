@@ -6,7 +6,7 @@ import doorSpaceReducer from "../DoorSpaceReducer";
 import railBetweenFinder from "../RailBetweenFinder";
 
 
-export default function carcassDesigner(ctw, liftInfo, constants, selectedOptions, neededBarit) {
+export default function carcassDesigner(ctw, liftInfo, constants, selectedOptions) {
     //1.adım: kapıdan alan kalıyor mu?
 
     //önce kapıdan alan kalıyor mu ona bakalım
@@ -19,7 +19,7 @@ export default function carcassDesigner(ctw, liftInfo, constants, selectedOption
     const carcassWidth = carcassWidths(ctw, constants);
     
 
-    function usableCarcassWidths() {
+    function usableCarcassWidths() { //Kapı düşüldüğünde genişlikten kalan alanın kontrolü.
         let isEmptySpaceForSlim;
         let isEmptySpaceForFat;
         if (widthRemainedAfterDoor >= carcassDepth.fatCtwWithPudrel) {
@@ -37,7 +37,7 @@ export default function carcassDesigner(ctw, liftInfo, constants, selectedOption
         let slimCtwType;
         let emptyWidthForFat;
         let fatCtwType;
-
+        //Ağırlık sistemi için kullanılabilir boş alan
         if (isEmptySpaceForSlim === true) {
             emptyWidthForSlim = liftInfo.shaftDepth;
             slimCtwType = "shaftLenght";
@@ -79,7 +79,7 @@ export default function carcassDesigner(ctw, liftInfo, constants, selectedOption
 
 
         if (emptyWidthForFat >= carcassWidth.doubleSided) {
-            fatCarcassSystemWidth = carcassWidth.doubleSided;
+            fatCarcassSystemWidth = carcassWidth.doubleSided; //Çalışma boşlukları dahil
             fatLongDoubleRowBarit = true;
             fatRailBetween = railBetweenFinder(ctw.two_X_a)
             fatTypeMaxBaritCapacityInKg = carcasslength.CarcassLengthDetails.doubleKg * 2;

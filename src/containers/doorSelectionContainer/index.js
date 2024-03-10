@@ -48,7 +48,9 @@ const backPage=() => window.location.href = "/docs/packageApp";
             <Link href="/docs/motorSelection">
             <ElexiaGreenButton  className={styles.nextButton} buttonName={"Next"}/>
             </Link>
+            <Link href="/docs/packageApp">  
             <ElexiaGreenButton className={styles.backButton} buttonName={"Back"}/>
+            </Link>
             
            
         </div>

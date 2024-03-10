@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 import { Button, Dropdown, Segment, Table } from 'semantic-ui-react'
 import { useDispatch, useSelector } from 'react-redux';
 import { setMotor } from '@/lib/features/packageAppFeatures/selectedOptionsSlice';
+import Image from 'next/image';
 
 
 export default function MotorTable() {
@@ -96,6 +97,7 @@ export default function MotorTable() {
       <Table striped>
         <Table.Header>
           <Table.Row>
+            <Table.HeaderCell>img</Table.HeaderCell>
             <Table.HeaderCell>Motor Markası</Table.HeaderCell>
             <Table.HeaderCell>Motor Adı</Table.HeaderCell>
             <Table.HeaderCell>Kapasite</Table.HeaderCell>
@@ -111,6 +113,9 @@ export default function MotorTable() {
         <Table.Body>
           {filteredMotors.map((product) => (
             <Table.Row key={product.productId}>
+              <Table.Cell>
+                <Image src={"/images/motor.png"} alt="Motor Image" width={100} height={50} />
+              </Table.Cell>
               <Table.Cell>{product.supplier.supplierName}</Table.Cell>
               <Table.Cell>{product.motor.modelName}</Table.Cell>
               <Table.Cell>{product.motor.capacity} kg</Table.Cell>

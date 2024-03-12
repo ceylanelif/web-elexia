@@ -37,7 +37,7 @@ export default function LiftSummaryTable() {
           </tr>
           <tr>
             <td>Shaft Distance</td>
-            <td>{liftInfo.pit + liftInfo.travelDistance + liftInfo.overhead}</td>
+            <td>{parseInt(liftInfo.pit) + parseInt(liftInfo.travelDistance) + parseInt(liftInfo.overhead)}</td>
           </tr>
           <tr>
             <td>Machine Room</td>

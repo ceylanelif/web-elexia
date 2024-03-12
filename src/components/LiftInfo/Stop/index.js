@@ -12,7 +12,15 @@ export default function Stop() {
   };
   return (
     <div className='stops'>
-      <ElexiaInput value={liftInfo.stop} handleChange={handleStop} labelName="Number of Stops" inputPlaceholder="Stop"></ElexiaInput>
+      <ElexiaInput 
+      type={"number"}
+      min={2}
+      max={32} 
+      required={true}
+      value={liftInfo.stop} 
+      handleChange={handleStop} 
+      labelName="Number of Stops" 
+      inputPlaceholder="Stop"></ElexiaInput>
     </div>
     )
 

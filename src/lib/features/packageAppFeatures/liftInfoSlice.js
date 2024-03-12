@@ -3,13 +3,13 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   shaftWidth: 1800,
   shaftDepth: 1600,
-  overhead: 3000,
-  travelDistance: 16000,
-  pit: 1000,
+  overhead: 0,
+  travelDistance: 0,
+  pit: 0,
   machineRoom: true,
   ropeType: "2:1",
   speed: 1,
-  stop:5,
+  stop:null,
   offerName:null,
   offerId:null,
 };

@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import styles from "./styles.module.css";
 
-export default function ElexiaInput({ labelName, inputPlaceholder,value, handleChange,type ,min,max,required}) {
+export default function ElexiaInput({ labelName, inputPlaceholder,value, handleChange,type }) {
 
   return (
     <div className={styles.elexiaInputWrapper}>
@@ -14,10 +14,7 @@ export default function ElexiaInput({ labelName, inputPlaceholder,value, handleC
       <div className={styles.inputWrapper}>
         <input
           type={type ? type : "text"}
-          required={required ? required : false}
-          min={min ? min : null}
-          max={max ? max : null}
-          placeholder={inputPlaceholder}
+           placeholder={inputPlaceholder}
           value={value}
           onChange={handleChange}
         />

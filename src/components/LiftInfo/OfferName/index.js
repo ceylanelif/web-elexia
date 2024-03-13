@@ -1,27 +1,57 @@
-"use client"
-import ElexiaInput from '@/components/Input';
 import React from 'react';
-import styles from "./styles.module.css"
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import { setOfferName } from '@/lib/features/packageAppFeatures/liftInfoSlice';
+import { Input, Label } from 'semantic-ui-react';
+import styles from "./styles.module.css"
 
+// Yup ile şema tanımı
+const validationSchema = Yup.object().shape({
+  offerName: Yup.string()
+    .min(3, 'Minimum 3 karakter girmelisiniz')
+    .max(15, 'Maksimum 15 karakter girebilirsiniz')
+    .required('Bu alan boş bırakılamaz'),
+});
 
-export default function OfferName() {
+const OfferName = () => {
   const dispatch = useDispatch();
   const liftInfo = useSelector((state) => state.lift);
-  const handleOfferName = (event) => {
-      dispatch(
-      setOfferName(event.target.value)); // Eğer input alanında göstermek istiyorsanız, state'i güncelleyin
-  };
-  return (
-    <div  className={styles.projectName} >
-      <ElexiaInput  
-      labelName="Project Name" 
-      inputPlaceholder="Write Project Name Here !"
-      value={liftInfo.offerName} // Input alanına değeri atamak için state'i kullanın
-     handleChange={handleOfferName}
-      ></ElexiaInput>
 
- </div>
+  const handleSubmit = (values, { setSubmitting }) => {
+    dispatch(setOfferName(values.offerName));
+    setSubmitting(false);
+  };
+
+  return (
+    <div className={styles.projectName}>
+      <Formik
+        initialValues={{ offerName: liftInfo.offerName || '' }}
+        validationSchema={validationSchema}
+        onSubmit={handleSubmit}
+      >
+        {({ isSubmitting }) => (
+          <Form>
+            <div>
+              <Label htmlFor="offerName">Project Name</Label>
+              <Field
+                as={Input}
+                type="text"
+                name="offerName"
+                id="offerName"
+                placeholder="Enter project name"
+              />
+              <ErrorMessage name="offerName" component="div" className="error" />
+            </div>
+
+            <button type="submit" disabled={isSubmitting}>
+              Submit
+            </button>
+          </Form>
+        )}
+      </Formik>
+    </div>
   );
-}
+};
+
+export default OfferName;

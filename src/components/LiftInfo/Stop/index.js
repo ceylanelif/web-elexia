@@ -14,8 +14,6 @@ export default function Stop() {
     <div className='stops'>
       <ElexiaInput 
       type={"number"}
-      min={2}
-      max={32} 
       required={true}
       value={liftInfo.stop} 
       handleChange={handleStop} 

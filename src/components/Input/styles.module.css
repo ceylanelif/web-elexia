@@ -1,8 +1,9 @@
-.elexiaInputWrapper {
-  display: flex;
+.elexiaInputWrapper form {
+  display:inline-flex;
   padding: 4px;
   align-items: center;
   gap: 10px;
+  width: 100%;
 }
 
 .labelWrapper {
@@ -17,7 +18,7 @@
 
 .inputWrapper {
   width: 70%;
-  align-items: baseline;
+  gap: 10px;
 }
 
 .inputWrapper input {
@@ -26,4 +27,10 @@
   padding: 6px;
   text-align: center;
   justify-content: center
+}
+.error {
+  color: red;
+  width: 100%; /* Hata mesajının genişliğini yüzde olarak ayarlayın */
+  box-sizing: border-box; /* Genişlikte padding ve border'ı dahil et */
+  word-wrap: break-word; /* Uzun kelimeleri otomatik olarak satır sonuna al */
 }

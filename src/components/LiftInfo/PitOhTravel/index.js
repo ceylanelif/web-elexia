@@ -25,9 +25,9 @@ export default function PitOhTravel() {
     return (
       <div className={styles.pitOhTravelWrapper}>
 
-        <div><InputSpan value={liftInfo.overhead} handleChange={handleOverhead} labelName="Overhead" placeholder="Overhead" spanPlaceholder={"mm"} ></InputSpan></div>
-        <div><InputSpan value={liftInfo.travelDistance} handleChange={handleTravel} labelName="Travel Distance" placeholder="Travel Distance" spanPlaceholder={"mm"} ></InputSpan></div>
-        <div><InputSpan value={liftInfo.pit} handleChange={handlePit} labelName="Pit" placeholder="Pit" spanPlaceholder={"mm"} ></InputSpan></div>
+        <div><InputSpan value={liftInfo.overhead} handleChange={handleOverhead} labelName="Overhead" inputPlaceholder="Overhead" spanPlaceholder={"mm"} ></InputSpan></div>
+        <div><InputSpan value={liftInfo.travelDistance} handleChange={handleTravel} labelName="Travel Distance" inputPlaceholder="Travel Distance" spanPlaceholder={"mm"} ></InputSpan></div>
+        <div><InputSpan value={liftInfo.pit} handleChange={handlePit} labelName="Pit" inputPlaceholder="Pit" spanPlaceholder={"mm"} ></InputSpan></div>
 
       </div>
     );

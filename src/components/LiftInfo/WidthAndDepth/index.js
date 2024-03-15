@@ -19,8 +19,8 @@ export default function WidthAndDepth() {
 
   return (
     <div className="widthDepth">
-    <InputSpan value={liftInfo.shaftWidth} handleChange={handleWidth} placeholder="Shaft Width" labelName="Shaft Width" spanPlaceholder="mm"></InputSpan>
-    <InputSpan value={liftInfo.setShaftDepth} handleChange={handleDepth} placeholder="Shaft Depth" labelName="Shaft Depth" spanPlaceholder="mm"></InputSpan>
+    <InputSpan value={liftInfo.shaftWidth} handleChange={handleWidth} inputPlaceholder="Shaft Width" labelName="Shaft Width" spanPlaceholder="mm"></InputSpan>
+    <InputSpan value={liftInfo.setShaftDepth} handleChange={handleDepth} inputPlaceholder="Shaft Depth" labelName="Shaft Depth" spanPlaceholder="mm"></InputSpan>
      
      </div>
   );

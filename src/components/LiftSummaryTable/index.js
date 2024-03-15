@@ -1,4 +1,3 @@
-"use client"
 import React, { useState } from 'react';
 import styles from './styles.module.css'
 import { useSelector } from 'react-redux';
@@ -6,6 +5,14 @@ import { useSelector } from 'react-redux';
 export default function LiftSummaryTable() {
   const liftInfo = useSelector((state) => state.lift);
   const selectedOptions = useSelector((state) => state.selectedOptions);
+
+  // Shaft Distance için kontrol
+  const pit = liftInfo.pit ?? 0; // Eğer pit tanımlı değilse 0 yap
+  const travelDistance = liftInfo.travelDistance ?? 0; // Eğer travelDistance tanımlı değilse 0 yap
+  const overhead = liftInfo.overhead ?? 0; // Eğer overhead tanımlı değilse 0 yap
+
+  const shaftDistance = parseInt(pit) + parseInt(travelDistance) + parseInt(overhead);
+
   return (
     <div className={styles.summaryTable} >
       <table >
@@ -35,10 +42,12 @@ export default function LiftSummaryTable() {
             <td>Pit</td>
             <td>{liftInfo.pit}</td>
           </tr>
-          <tr>
-            <td>Shaft Distance</td>
-            <td>{parseInt(liftInfo.pit) + parseInt(liftInfo.travelDistance) + parseInt(liftInfo.overhead)}</td>
-          </tr>
+          {Number.isNaN(shaftDistance) ? null : // Shaft Distance için kontrol
+            <tr>
+              <td>Shaft Distance</td>
+              <td>{shaftDistance}</td>
+            </tr>
+          }
           <tr>
             <td>Machine Room</td>
             <td>{liftInfo.machineRoom ? 'Machine Room' : 'Machine Roomless'}</td>

@@ -1,32 +1,33 @@
-"use client"
 import React from 'react';
-import styles from './styles.module.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { setMachineRoom } from '@/lib/features/packageAppFeatures/liftInfoSlice';
-import ElexiaRadioButton from '@/components/RadioButton';
+import { Radio } from 'semantic-ui-react';
+import 'semantic-ui-css/semantic.min.css'; // Semantic UI CSS import edildiği varsayılıyor
+import styles from "./styles.module.css";
 
 export default function MachineRoom() {
   const dispatch = useDispatch();
   const liftInfo = useSelector((state) => state.lift);
-  
-  const handleMachineRoomChange = (e) => {
-    const value = e.target.value;
+
+  const handleMachineRoomChange = (e, { value }) => {
     dispatch(setMachineRoom(value === 'MR'));
   };
 
   return (
-    <div className={styles.radioGroupContainer}>
-      <ElexiaRadioButton
+    <div className={styles.wrapper}>
+      <Radio
+        label='Machine Room'
+        name='machineRoomRadioGroup'
         value='MR'
         checked={liftInfo.machineRoom === true}
-        handleChange={handleMachineRoomChange}
-        buttonName="Machine Room"
+        onChange={handleMachineRoomChange}
       />
-      <ElexiaRadioButton
+      <Radio
+        label='Machine Roomless'
+        name='machineRoomRadioGroup'
         value='MRL'
         checked={liftInfo.machineRoom === false}
-        handleChange={handleMachineRoomChange}
-        buttonName="Machine Roomless"
+        onChange={handleMachineRoomChange}
       />
     </div>
   );

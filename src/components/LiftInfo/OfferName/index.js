@@ -2,7 +2,6 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setOfferName } from '@/lib/features/packageAppFeatures/liftInfoSlice';
 import styles from "./styles.module.css";
-import { Input } from 'semantic-ui-react';
 import * as Yup from 'yup';
 import ElexiaInput from '@/components/Input';
 
@@ -13,7 +12,7 @@ const validationSchema = Yup.object().shape({
     .max(15, 'Max 15 character limit')
     .required('This field is required'),
 });
-
+console.log(validationSchema);
 const OfferName = () => {
   const dispatch = useDispatch();
   const liftInfo = useSelector((state) => state.lift);

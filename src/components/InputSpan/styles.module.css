@@ -1,4 +1,4 @@
-.elexiaLabeledInputWrapper {
+.elexiaLabeledInputWrapper form {
   display: flex;
   padding: 4px;
   align-items: center;
@@ -42,3 +42,10 @@
   padding: 4px 6px 5px 4px;
   background-color: gainsboro;
 } 
+
+.error {
+  color: red;
+  width: 100%; /* Hata mesajının genişliğini yüzde olarak ayarlayın */
+  box-sizing: border-box; /* Genişlikte padding ve border'ı dahil et */
+  word-wrap: break-word; /* Uzun kelimeleri otomatik olarak satır sonuna al */
+}

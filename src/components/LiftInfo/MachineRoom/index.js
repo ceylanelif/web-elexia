@@ -16,6 +16,7 @@ export default function MachineRoom() {
   return (
     <div className={styles.wrapper}>
       <Radio
+        id='machineRoomRadioGroup'
         label='Machine Room'
         name='machineRoomRadioGroup'
         value='MR'
@@ -23,6 +24,7 @@ export default function MachineRoom() {
         onChange={handleMachineRoomChange}
       />
       <Radio
+        id='machineRoomlessRadioGroup'
         label='Machine Roomless'
         name='machineRoomRadioGroup'
         value='MRL'

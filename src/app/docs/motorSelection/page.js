@@ -31,7 +31,6 @@ export default function MotorTable() {
 
     return (
       (selectedCapacity <= product.motor.capacity) &&
-      (liftInfo.speed === product.motor.speed) &&
       (
         // Önceki koşulların değişmemesi için parantez içinde aynı kontroller devam ediyor
         (isMachineRoom && ((selectedTypes.length === 0 || selectedTypes.includes(product.motor.gear)) && isGearNotEmpty)) ||

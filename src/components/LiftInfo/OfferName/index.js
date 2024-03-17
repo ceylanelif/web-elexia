@@ -24,8 +24,9 @@ const OfferName = () => {
   };
 
   const initialValues = {
-    offerName: liftInfo.offerName || ''
+    offerName: liftInfo.offerName !== null && liftInfo.offerName !== undefined ? liftInfo.offerName : ''
   };
+  
 
   return (
     <div className={styles.projectName}>

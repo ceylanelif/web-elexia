@@ -19,6 +19,7 @@ export default function RopeType() {
         <div >
           <label>Rope Type:</label>
           <Radio
+           id='ropeTypeRadioGroupTwoToOne'
             label='2:1'
             name='ropeTypeRadioGroup'
             value='2:1'
@@ -26,6 +27,7 @@ export default function RopeType() {
             onChange={handleRopeTypeChange}
           />
           <Radio
+            id='ropeTypeRadioGroupOneToOne'
             label='1:1'
             name='ropeTypeRadioGroup'
             value='1:1'

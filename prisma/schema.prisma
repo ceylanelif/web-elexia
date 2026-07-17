@@ -1,0 +1,200 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Company {
+  id        String   @id @default(cuid())
+  name      String
+  taxId     String   @unique
+  phone     String
+  address   String
+  status    String   @default("PENDING")
+  createdAt DateTime @default(now())
+  users     User[]
+  quotes    Quote[]
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      String   @default("PENDING")
+  companyId String?
+  company   Company? @relation(fields: [companyId], references: [id])
+  createdAt DateTime @default(now())
+}
+
+model Quote {
+  id        String      @id @default(cuid())
+  name      String
+  companyId String
+  company   Company     @relation(fields: [companyId], references: [id])
+  status    String      @default("DRAFT")
+  items     QuoteItem[]
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+}
+
+model QuoteItem {
+  id       String @id @default(cuid())
+  quoteId  String
+  quote    Quote  @relation(fields: [quoteId], references: [id])
+  category String
+  name     String
+  code     String?
+  specs    String?
+}
+
+model Product {
+  id              String         @id @default(cuid())
+  csvId           Int            @unique
+  category        String
+  name            String
+  code            String?        @unique
+  price           Float          @default(0)
+  brand           String         @default("")
+  material        String         @default("")
+  fireResistance  Boolean        @default(false)
+  productType     String         @default("CAR_DOOR")
+  specs           String?
+  active          Boolean        @default(true)
+  doorDimensionId Int?
+  doorDimension   DoorDimension? @relation(fields: [doorDimensionId], references: [id])
+}
+
+model DoorDimension {
+  id             Int       @id @default(autoincrement())
+  info           String
+  opening        String
+  numberOfPanels Int
+  width          Int
+  height         Int
+  depth          Int?
+  mechanismWidth Int?
+  products       Product[]
+}
+
+model Barit {
+  id    Int    @id @default(autoincrement())
+  brand String
+  model String
+  ctwA  Int
+  ctwB  Int
+  ctwC  Int
+  ctwKg Int
+}
+
+model Supplier {
+  id      Int     @id
+  name    String
+  region  String
+  country String
+  motors  Motor[]
+}
+
+model Motor {
+  id              String   @id @default(cuid())
+  csvId           Int      @unique
+  modelName       String
+  supplierId      Int
+  supplier        Supplier @relation(fields: [supplierId], references: [id])
+  capacity        Int
+  speed           Float
+  kw              Float
+  pulleySize      Int
+  ropeRow         Int
+  ropeSize        Float
+  current         Float?
+  frequency       Float?
+  brakeVoltage    Float?
+  staticLoad      Float?
+  maxTravel       Float?
+  maxTravelWithBC Float?
+  ropeType        String
+  gear            String
+  encoder         String?
+  poleAmount      Int?
+  vvvf            String?
+  rpm             Int?
+  brand           String
+  country         String
+  active          Boolean  @default(true)
+}
+
+model CabinModel {
+  id       Int     @id @default(autoincrement())
+  name     String
+  material String
+  imageUrl String?
+  active   Boolean @default(true)
+}
+
+model CeilingModel {
+  id        Int     @id @default(autoincrement())
+  name      String
+  materials String  // JSON array: ["Ayna Paslanmaz", "Satine Paslanmaz", ...]
+  imageUrl  String?
+  active    Boolean @default(true)
+}
+
+model FloorModel {
+  id        Int     @id @default(autoincrement())
+  name      String
+  floorType String  // "Granit" | "PVC"
+  imageUrl  String?
+  active    Boolean @default(true)
+}
+
+model CommandBox {
+  id           Int     @id @default(autoincrement())
+  name         String
+  brand        String
+  model        String
+  type         String  // "SENKRON" | "ASENKRON"
+  power        Float
+  amper        Int
+  maxStop      Int
+  maxHiz       Float
+  hazirTesisat Boolean @default(false)
+  paralel      Boolean @default(false)
+  price        Float   @default(0)
+  specs        String?
+  country      String  @default("Türkiye")
+  active       Boolean @default(true)
+}
+
+model ButtonModel {
+  id       Int     @id @default(autoincrement())
+  name     String  // "Yuvarlak Buton", "Kare Buton", vs.
+  imageUrl String?
+  active   Boolean @default(true)
+}
+
+model CopModel {
+  id           Int     @id @default(autoincrement())
+  name         String
+  panoBrand    String  // Uyumlu pano markası: "ARKEL", "HEDEFSAN", vs.
+  boyTipi      String  // "Tam Boy" | "Yarı Boy"
+  montajTipi   String  // "Sıva Altı" | "Sıva Üstü"
+  material     String
+  tftSupport   Boolean @default(false) // TFT haberleşme desteği var mı
+  imageUrl     String?
+  active       Boolean @default(true)
+}
+
+model LopModel {
+  id              Int     @id @default(autoincrement())
+  name            String
+  panoBrand       String  // Uyumlu pano markası
+  material        String
+  supportedDisplays String  // JSON array: ["LCD","TFT","Dot Matrix","7 Segment"]
+  imageUrl        String?
+  active          Boolean @default(true)
+}
